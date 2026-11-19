@@ -10,6 +10,7 @@ so they work without JavaScript. All links are relative, so the site works
 under /policy-tracker/, on a custom domain or from a local folder.
 """
 import csv
+from datetime import date
 import io
 import json
 import os
@@ -62,8 +63,13 @@ def fmt_date(d):
     return f"{int(p[2])} {months[int(p[1]) - 1]} {p[0]}"
 
 
+def plot_date(r):
+    """Date used to place and sort an instrument: date signed, or date in force when that is all that is known."""
+    return r.get("date_signed") or r.get("date_in_force") or ""
+
+
 def sort_key_date(r):
-    return to_year(r.get("date_signed")) or 9999
+    return to_year(plot_date(r)) or 9999
 
 
 def component(data, rule):
@@ -104,7 +110,7 @@ def status_slug(s):
 
 def chain_svg(nodes, current_id, root, compact=False):
     """Amendment chain: one row per rule, x = date signed, curved links newer → older."""
-    years = [to_year(n["date_signed"]) for n in nodes if n["date_signed"]]
+    years = [to_year(plot_date(n)) for n in nodes if plot_date(n)] or [float(date.today().year)]
     lo = int(min(years))
     hi = max(int(max(years)) + 1, lo + 2)
     W, label_w, pad_r = 720, 190, 24
@@ -114,7 +120,7 @@ def chain_svg(nodes, current_id, root, compact=False):
     x = lambda y: label_w + (y - lo) / (hi - lo) * (W - label_w - pad_r)  # noqa: E731
     pos = {}
     for i, n in enumerate(nodes):
-        pos[n["id"]] = (x(to_year(n["date_signed"]) or hi), top + i * row_h + row_h / 2)
+        pos[n["id"]] = (x(to_year(plot_date(n)) or hi), top + i * row_h + row_h / 2)
 
     out = [f'<svg class="chart chain" viewBox="0 0 {W} {H}" role="img" '
            f'aria-label="Amendment chain of {len(nodes)} rules from {lo} to {hi}">']
@@ -148,7 +154,7 @@ def chain_svg(nodes, current_id, root, compact=False):
 def swimlane_svg(rules, topics, root, lo=None, hi=None):
     """Timeline with one lane per topic; each rule is a dot in each of its topic lanes."""
     lanes = [t for t in topics.values() if any(t["id"] in r["topics"] for r in rules)]
-    years = [to_year(r["date_signed"]) for r in rules if r["date_signed"]]
+    years = [to_year(plot_date(r)) for r in rules if plot_date(r)] or [float(date.today().year)]
     lo = lo or int(min(years))
     hi = hi or int(max(years)) + 1
     W, label_w, pad_r, lane_h, top = 900, 230, 20, 34, 26
@@ -166,8 +172,8 @@ def swimlane_svg(rules, topics, root, lo=None, hi=None):
                    f'<a href="{root}topics/{t["id"]}/"><text class="label" x="0" y="{cy + 4}">'
                    f'{escape(t["label"])}</text></a>')
         placed = []
-        for r in sorted((r for r in rules if t["id"] in r["topics"] and r["date_signed"]), key=sort_key_date):
-            cx = x(to_year(r["date_signed"]))
+        for r in sorted((r for r in rules if t["id"] in r["topics"] and plot_date(r)), key=sort_key_date):
+            cx = x(to_year(plot_date(r)))
             # Nudge dots that would overlap within this lane.
             k = sum(1 for p in placed if abs(p - cx) < 9)
             placed.append(cx)
@@ -337,7 +343,7 @@ def main():
     page("compare", "compare.html", "Compare countries", nav="compare", matrix=matrix)
 
     # Timeline
-    all_years = [to_year(r["date_signed"]) for r in rules if r["date_signed"]]
+    all_years = [to_year(plot_date(r)) for r in rules if plot_date(r)]
     lo, hi = int(min(all_years)), int(max(all_years)) + 1
     page("timeline", "timeline.html", "Timeline", nav="timeline",
          lanes=[(c, swimlane_svg([r for r in rules if r["country"] == code], data.topics, "../", lo, hi))

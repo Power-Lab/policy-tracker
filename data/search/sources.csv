@@ -68,3 +68,32 @@ in-pmsuryaghar,IN,PM Surya Ghar national portal,https://pmsuryaghar.gov.in/,2,ag
 in-merc,IN,Maharashtra Electricity Regulatory Commission (copies of central rules),https://merc.gov.in/,3,legal register,en,open,2026-11-19,,HTTP 200; hosts gazette copies of the Rights of Consumers Rules 2020 and GEOA Rules 2022.
 in-prs,IN,PRS Legislative Research,https://prsindia.org/,4,secondary,en,open,2026-11-19,,"HTTP 200; Act texts and bill summaries (Energy Conservation Amendment Act 2022, Draft Electricity Amendment Bill 2025)."
 in-iea,IN,IEA Policies database,https://www.iea.org/policies,4,secondary,en,unknown,,,Not fetched; used via search results for CCTS and BCD dates.
+au-frl,AU,Federal Register of Legislation,https://www.legislation.gov.au/,1,legal database,en,open,2026-11-19,,"HTTP 200. Public OData API at api.prod.legislation.gov.au returned title, number, making date and status for all Commonwealth Acts and instruments searched; page text tab gives tables of contents only via our fetcher."
+au-arena,AU,Australian Renewable Energy Agency (ARENA) funding pages,https://arena.gov.au/funding/,2,agency listing,en,open,2026-11-19,,"HTTP 200 for Solar Sunshot, Battery Breakthrough Initiative and Hydrogen Headstart pages."
+au-cer,AU,Clean Energy Regulator,https://www.cer.gov.au/,2,agency listing,en,open,2026-11-19,,HTTP 200 (Safeguard Mechanism page).
+au-pmc,AU,Department of the Prime Minister and Cabinet (Critical Minerals Strategic Reserve),https://www.pmc.gov.au/domestic-policy/critical-minerals-strategic-reserve,2,agency listing,en,open,2026-11-19,,HTTP 200.
+au-dcceew,AU,"Department of Climate Change, Energy, the Environment and Water",https://www.dcceew.gov.au/,2,agency listing,en,unreachable,2026-11-19,,curl returned HTTP/2 stream error (000) with and without HTTP/1.1.
+au-industry,AU,"Department of Industry, Science and Resources",https://www.industry.gov.au/,2,agency listing,en,unreachable,2026-11-19,,curl timed out (000); WebFetch returned 503. Hosts the Critical Minerals Strategy and the Anti-Dumping Commission public record.
+au-adc,AU,"Anti-Dumping Commission (Dumping Commodity Register, public record)",https://www.industry.gov.au/anti-dumping-commission,2,agency listing,en,unreachable,2026-11-19,,Same host as au-industry; 000 / 503. PDFs surfaced via web search only.
+au-firb,AU,Foreign Investment Review Board,https://firb.gov.au/,2,agency listing,en,unreachable,2026-11-19,,curl returned 000.
+au-fmia,AU,Future Made in Australia portal,https://futuremadeinaustralia.gov.au/,4,secondary,en,unreachable,2026-11-19,,HTTP 426 (Upgrade Required) from our client.
+au-aph,AU,Parliament of Australia (estimates tabled documents),https://www.aph.gov.au/,4,secondary,en,restricted,2026-11-19,,WebFetch of a tabled estimates PDF returned 403.
+pk-nepra,PK,National Electric Power Regulatory Authority (NEPRA),https://www.nepra.org.pk/,2,agency listing,en,open,2026-11-19,,"HTTP 200 for home page and PDFs (Prosumer Regulations draft, SRO 1330(I)/2026, IGCEP filing); directory listing of /Legislation/3-Reg/ returned 403. Regulation links appear on the home page."
+pk-fbr,PK,Federal Board of Revenue,https://www.fbr.gov.pk/,2,agency listing,en,open,2026-11-19,,"HTTP 200; circular PDF on download1.fbr.gov.pk downloaded (scanned, partial text layer)."
+pk-aedb,PK,Alternative Energy Development Board,https://www.aedb.org/,2,agency listing,en,open,2026-11-19,,HTTP 200 (net metering page).
+pk-power,PK,Ministry of Energy (Power Division),https://www.power.gov.pk/,2,agency listing,en,open,2026-11-19,,HTTP 200. The powerdivision.gov.pk host returned 000.
+pk-ismo,PK,Independent System and Market Operator,https://ismo.gov.pk/,2,agency listing,en,open,2026-11-19,,HTTP 200; not searched in depth.
+pk-cppa,PK,Central Power Purchasing Agency (Guarantee) Ltd,https://cppa.gov.pk/,2,agency listing,en,open,2026-11-19,,HTTP 200; not searched in depth.
+pk-moip,PK,Ministry of Industries and Production,https://moip.gov.pk/,2,agency listing,en,open,2026-11-19,,HTTP 200; NEV Policy text not located.
+pk-mocc,PK,Ministry of Climate Change,https://www.climatechange.gov.pk/,2,agency listing,en,unreachable,2026-11-19,,curl returned 000.
+pk-ppib,PK,Private Power and Infrastructure Board,https://www.ppib.gov.pk/,2,agency listing,en,restricted,2026-11-19,,HTTP 403.
+pk-code,PK,Pakistan Code (federal laws database),https://pakistancode.gov.pk/,1,legal database,en;ur,unreachable,2026-11-19,,curl returned 000.
+bd-bdlaws,BD,Laws of Bangladesh (Legislative and Parliamentary Affairs Division),https://bdlaws.minlaw.gov.bd/,1,legal database,bn;en,open,2026-11-19,,"HTTP 200. Chronological index (UTF-16 HTML) lists Acts and Ordinances with number, date and repeal notes, including 2026 Acts and Ordinances."
+bd-dpp,BD,Bangladesh Government Press (Bangladesh Gazette),https://www.dpp.gov.bd/bgpress/,1,gazette,bn;en,open,2026-11-19,,HTTP 200 for the portal; no gazette searched.
+bd-powerdivision,BD,"Power Division, Ministry of Power, Energy and Mineral Resources",https://powerdivision.gov.bd/,2,agency listing,bn;en,open,2026-11-19,,HTTP 200 for home page; policy documents not located in the time available.
+bd-nbr,BD,National Board of Revenue,https://nbr.gov.bd/,2,agency listing,bn;en,open,2026-11-19,,HTTP 200; SRO 159 text not located.
+bd-sreda,BD,Sustainable and Renewable Energy Development Authority,https://sreda.gov.bd/,2,agency listing,bn;en,unreachable,2026-11-19,,TLS certificate verification failed (incomplete chain).
+bd-berc,BD,Bangladesh Energy Regulatory Commission,https://berc.org.bd/,2,agency listing,bn;en,unreachable,2026-11-19,,curl returned 000.
+bd-bpdb,BD,Bangladesh Power Development Board,https://www.bpdb.gov.bd/,2,agency listing,bn;en,unreachable,2026-11-19,,curl returned 000.
+bd-brta,BD,Bangladesh Road Transport Authority,https://brta.gov.bd/,2,agency listing,bn,unreachable,2026-11-19,,curl returned 000.
+bd-moef,BD,"Ministry of Environment, Forest and Climate Change",https://moef.portal.gov.bd/,2,agency listing,bn;en,unreachable,2026-11-19,,curl returned 000.

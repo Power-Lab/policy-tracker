@@ -502,3 +502,10 @@ tbody tr:last-child > * { border-bottom: 0; }
 .category-heading { display: flex; align-items: center; }
 .category-heading .cat-mark { width: 14px; height: 14px; margin-right: 10px; }
 .matrix .group-row .cat-mark { margin-right: 8px; }
+
+/* ---------- compare controls ---------- */
+.compare-controls { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-bottom: 16px; }
+.compare-controls fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 2px 14px; align-items: center; }
+.compare-controls legend { font-weight: 600; font-size: 0.86rem; margin-bottom: 4px; width: 100%; }
+.matrix th[scope="row"] { position: sticky; left: 0; z-index: 1; background: var(--surface); }
+.matrix .group-row th { position: sticky; left: 0; }

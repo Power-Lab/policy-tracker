@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block description %}Topic by country: which rules apply today in each country tracked.{% endblock %}
+{% block scripts %}<script src="{{ root }}assets/js/compare.js"></script>{% endblock %}
 {% block content %}
 <section class="page-head container">
   {{ m.crumbs([("Home", root), ("Compare", None)]) }}
@@ -7,20 +8,29 @@
   <p class="lede">The rules that still apply, by topic and country, plus drafts and adopted rules not yet in force. An empty cell indicates that no instrument has been recorded; it does not imply that none exists.</p>
 </section>
 <section class="container">
+  <form class="compare-controls" id="compare-controls" aria-label="Choose what to compare">
+    <fieldset><legend>Countries</legend>
+      {% for code, c in countries.items() %}<label class="check"><input type="checkbox" name="country" value="{{ code }}" checked> <span>{{ c.name }}</span></label>{% endfor %}
+    </fieldset>
+    <fieldset><legend>Category</legend>
+      <label class="check"><input type="radio" name="category" value="" checked> <span>All</span></label>
+      {% for cid, cat in categories.items() %}<label class="check"><input type="radio" name="category" value="{{ cid }}"> <span><span class="cat-dot cat-{{ cid }}"></span>{{ cat.label }}</span></label>{% endfor %}
+    </fieldset>
+  </form>
   <div class="table-wrap">
     <table class="matrix">
       <thead>
-        <tr><th scope="col">Topic</th>{% for code, c in countries.items() %}<th scope="col"><a href="{{ root }}countries/{{ code|lower }}/">{{ c.name }}</a></th>{% endfor %}</tr>
+        <tr><th scope="col">Topic</th>{% for code, c in countries.items() %}<th scope="col" data-country="{{ code }}"><a href="{{ root }}countries/{{ code|lower }}/">{{ c.name }}</a></th>{% endfor %}</tr>
       </thead>
       <tbody>
         {% for row in matrix %}
         {% if loop.first or row.t.category != loop.previtem.t.category %}
-        <tr class="group-row cat-{{ row.t.category }}"><th colspan="{{ countries|length + 1 }}" scope="colgroup"><span class="cat-mark" aria-hidden="true"></span>{{ categories[row.t.category].label }}</th></tr>
+        <tr class="group-row cat-{{ row.t.category }}" data-category="{{ row.t.category }}"><th colspan="{{ countries|length + 1 }}" scope="colgroup"><span class="cat-mark" aria-hidden="true"></span>{{ categories[row.t.category].label }}</th></tr>
         {% endif %}
-        <tr>
+        <tr data-category="{{ row.t.category }}">
           <th scope="row"><a href="{{ root }}topics/{{ row.t.id }}/">{{ row.t.label }}</a></th>
           {% for cell in row.cells %}
-          <td>
+          <td data-country="{{ cell.code }}">
             {% for r, ams in cell.current %}
             <div class="matrix-rule">
               <span class="lg-dot s-{{ r.status|sslug }}" title="{{ r.status }}"></span>

@@ -295,3 +295,10 @@ class CategoryTests(unittest.TestCase):
         for r in data.rules.values():
             for t in r["technologies"]:
                 self.assertIn(t, build.TECHNOLOGIES)
+
+    def test_undated_instruments_fall_back_to_date_in_force(self):
+        self.assertEqual(render.plot_date({"date_signed": "", "date_in_force": "2020"}), "2020")
+        self.assertEqual(render.plot_date({"date_signed": "2019-05", "date_in_force": "2020"}), "2019-05")
+        svg = render.chain_svg([{"id": "A", "slug": "a", "short_name": "A", "status": "in force", "date_signed": "",
+                                 "date_in_force": "", "amends": [], "revokes": [], "overrides": []}], "A", "")
+        self.assertIn("<svg", svg)
