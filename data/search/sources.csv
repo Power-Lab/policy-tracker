@@ -33,3 +33,17 @@ bn-agc,BN,"Attorney General's Chambers, Laws of Brunei",https://www.agc.gov.bn/,
 bn-energy,BN,"Department of Energy, Prime Minister's Office",https://www.energy.gov.bn/,2,agency listing,en;ms,unknown,,,
 tl-jornal,TL,Jornal da República,https://www.mj.gov.tl/jornal/,1,gazette,pt,unknown,,,"Official gazette, Portuguese."
 mm-odm,MM,Open Development Myanmar,https://data.opendevelopmentmekong.net/,4,secondary,en;my,open,2026-11-04,,Translations of laws; official ministry pages return errors.
+id-kemenkeu-jdih,ID,Ministry of Finance legal database (JDIH Kemenkeu),https://jdih.kemenkeu.go.id/,2,agency listing,id,open,2026-11-19,,"Finance Minister regulations (PMK) with abstracts and PDFs; home page redirected (307), document PDFs downloaded."
+id-peraturan-go,ID,Ministry of Law legislation portal (peraturan.go.id),https://peraturan.go.id/,1,legal database,id,unreachable,2026-11-19,,Official texts of laws and ministerial regulations (Berita Negara); connection reset when tried from the session.
+id-kemenperin-jdih,ID,Ministry of Industry legal database (JDIH Kemenperin),https://jdih.kemenperin.go.id/,2,agency listing,id,unreachable,2026-11-19,,"Permenperin texts (TKDN, EV roadmap); connection reset when tried."
+id-kemenkoinfra-jdih,ID,Coordinating Ministry for Infrastructure legal database,https://jdih.kemenkoinfra.go.id/,2,agency listing,id,open,2026-11-19,,"Metadata pages for investment and EV regulations (dates, gazette numbers); read via WebFetch."
+vn-moit,VN,Ministry of Industry and Trade portal (moit.gov.vn),https://moit.gov.vn/,2,agency listing,vi,open,2026-11-19,,Legal documents and trade remedy decisions; HTTP 200.
+vn-thuvienphapluat,VN,Thư viện Pháp luật,https://thuvienphapluat.vn/,3,legal register,vi;en,restricted,2026-11-19,,"Commercial legal register with dates, status and unofficial English; HTTP 403 to automated requests."
+vn-luatvietnam,VN,LuatVietnam,https://luatvietnam.vn/,3,legal register,vi;en,restricted,2026-11-19,,Commercial legal register; HTTP 403 to automated requests.
+th-boi,TH,Board of Investment (BOI) announcements,https://www.boi.go.th/,2,agency listing,th;en,open,2026-11-19,,BOI announcements and press releases with English translations; PDFs downloaded (HTTP 200).
+th-excise,TH,Excise Department,https://www.excise.go.th/,2,agency listing,th,open,2026-11-19,,"Excise notifications for EV 3.0/3.5; home page HTTP 200, notifications not searched."
+my-miti,MY,"Ministry of Investment, Trade and Industry (MITI)",https://www.miti.gov.my/,2,agency listing,en;ms,open,2026-11-19,,"NAP 2020, NIMP 2030, media statements on EV import policy; HTTP 200."
+my-mida,MY,Malaysian Investment Development Authority (MIDA),https://www.mida.gov.my/,2,agency listing,en,open,2026-11-19,,Incentive guidelines (GITA/GITE) and budget summaries; HTTP 200.
+my-mof,MY,Ministry of Finance Malaysia,https://www.mof.gov.my/,2,agency listing,en;ms,open,2026-11-19,,Budget speeches and tax measures; home page redirected (301).
+my-mgtc,MY,Malaysian Green Technology and Climate Change Corporation (MGTC),https://www.mgtc.gov.my/,2,agency listing,en,open,2026-11-19,,Low Carbon Mobility Blueprint and GITA asset guidelines; HTTP 200.
+my-jmg,MY,Department of Mineral and Geoscience (JMG),https://jmg.gov.my/,2,agency listing,ms;en,open,2026-11-19,,Rare earth policy statements; home page redirected (301).
