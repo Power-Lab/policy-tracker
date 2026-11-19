@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block description %}{{ r.short_name }}: {{ r.summary_english }}{% endblock %}
+{% block meta %}<link rel="canonical" href="{{ site_url }}rules/{{ r.slug }}/">{% endblock %}
+{% block content %}
+<article class="container rule-page">
+  {{ m.crumbs([("Home", root), ("Explore", root ~ "rules/"), (country.name, root ~ "countries/" ~ r.country|lower ~ "/"), (r.short_name, None)]) }}
+
+  <header class="rule-head">
+    <p class="eyebrow">{{ country.name }} · {{ r.doc_type }} · {{ r.number }}</p>
+    <h1>{{ r.title_english }}</h1>
+    <p class="orig" lang="{{ r.language }}">{{ r.title_original }}</p>
+    <div class="pills">{{ m.status(r.status) }} {{ m.verif(r.verification) }} {{ m.flags(r) }}</div>
+  </header>
+
+  <div class="rule-layout">
+    <div class="rule-main">
+      <section>
+        <h2 class="visually-hidden">Summary</h2>
+        <p class="rule-summary">{{ r.summary_english }}</p>
+        {% if r.verification != "verified" %}
+        <div class="callout warn">
+          <strong>{{ "Partly verified." if r.verification == "partly verified" else "Not yet verified." }}</strong>
+          This entry has not been fully checked against the official text. Confirm the status and links before relying on it.
+          {% if r.notes %}<p class="small"><strong>Reviewer notes:</strong> {{ r.notes }}</p>{% endif %}
+        </div>
+        {% elif r.notes %}
+        <div class="callout info"><strong>Notes:</strong> {{ r.notes }}</div>
+        {% endif %}
+      </section>
+
+      <section class="section-sm">
+        <h2>History</h2>
+        {% if chain %}
+        <p class="muted">All instruments linked to this one by amendment, revocation or partial override, in order of signature. Select an instrument to open its entry.</p>
+        <figure class="chart-frame">{{ chain }}{{ m.chain_legend() }}</figure>
+        <ol class="chain-steps">
+          {% for n in chain_nodes %}
+          <li class="{{ 'current' if n.id == r.id }}">
+            <div class="chain-step-head">
+              {% if n.id == r.id %}<strong>{{ n.short_name }}</strong> <span class="muted small">(this rule)</span>{% else %}{{ m.rule_link(n) }}{% endif %}
+              <span class="muted small">{{ n.date_signed|date }}</span>
+              {{ m.status(n.status) }}
+            </div>
+            <div class="small">{{ n.title_english }}</div>
+            {% if n.revokes or n.amends or n.overrides %}
+            <div class="small muted">
+              {% if n.revokes %}Revokes {% for x in n.revokes %}{{ m.rule_link(rules_by_id[x]) }}{{ ", " if not loop.last }}{% endfor %}.{% endif %}
+              {% if n.amends %}Amends {% for x in n.amends %}{{ m.rule_link(rules_by_id[x]) }}{{ ", " if not loop.last }}{% endfor %}.{% endif %}
+              {% if n.overrides %}Overrides in part {{ m.links(n.overrides) }}.{% endif %}
+            </div>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+        {% else %}
+        <p class="muted">No amendment or revocation links are recorded for this rule yet.</p>
+        {% endif %}
+      </section>
+
+      {% if r.implemented_by or r.implements %}
+      <section class="section-sm">
+        <h2>Implementation</h2>
+        {% if r.implements %}<p>This rule implements {{ m.links(r.implements) }}.</p>{% endif %}
+        {% if r.implemented_by %}
+        <p class="muted">Implementing instruments:</p>
+        <ul class="related">
+          {% for x in r.implemented_by %}{% set o = rules_by_id[x] %}<li>{{ m.rule_link(o) }} <span class="muted small">{{ o.date_signed|date }}</span> {{ m.status(o.status) }}<div class="small muted">{{ o.title_english }}</div></li>{% endfor %}
+        </ul>
+        {% endif %}
+      </section>
+      {% endif %}
+
+      {% if related %}
+      <section class="section-sm">
+        <h2>Related rules in {{ country.name }}</h2>
+        <ul class="related">
+          {% for o in related %}
+          <li>{{ m.rule_link(o) }} <span class="muted small">{{ o.date_signed|date }}</span> {{ m.status(o.status) }}<div class="small muted">{{ o.title_english }}</div></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      <section class="section-sm">
+        <h2>Change log</h2>
+        {% if changes %}
+        <ol class="changelog">
+          {% for c in changes %}
+          <li>
+            <div class="changelog-head"><time>{{ c.date|date }}</time> <a class="small muted" href="https://github.com/{{ repo }}/commit/{{ c.sha }}">{{ c.subject }}</a></div>
+            {% if c.kind == "added" %}<p class="small muted">Added to the tracker.</p>
+            {% else %}
+            <ul class="small">
+              {% for f, a, b in c.changes %}<li><code>{{ f }}</code>: {% if f in ["summary_english", "notes", "title_original"] %}edited{% else %}<span class="muted">{{ a or "—" }}</span> → {{ b or "—" }}{% endif %}</li>{% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+        {% else %}
+        <p class="muted">No recorded changes yet.</p>
+        {% endif %}
+      </section>
+
+      <section class="section-sm">
+        <h2>Cite this entry</h2>
+        <div class="cite">
+          <p id="cite-text">{{ cite }}</p>
+          <button type="button" class="btn btn-ghost btn-sm" data-copy="#cite-text">Copy</button>
+        </div>
+      </section>
+    </div>
+
+    <aside class="rule-side">
+      <div class="card facts">
+        <h2 class="facts-title">Key facts</h2>
+        <dl>
+          <dt>Issued by</dt><dd>{{ r.issuing_body }}</dd>
+          <dt>Signed</dt><dd>{{ r.date_signed|date }}</dd>
+          <dt>In force from</dt><dd>{{ r.date_in_force|date }}</dd>
+          <dt>Status</dt><dd>{{ m.status(r.status) }}<div class="small muted">checked {{ r.status_checked|date }}</div></dd>
+          {% if r.amended_by %}<dt>Amended by</dt><dd>{% for x in r.amended_by %}{{ m.rule_link(rules_by_id[x]) }}{{ ", " if not loop.last }}{% endfor %}</dd>{% endif %}
+          {% if r.revoked_by %}<dt>Revoked by</dt><dd>{% for x in r.revoked_by %}{{ m.rule_link(rules_by_id[x]) }}{{ ", " if not loop.last }}{% endfor %}</dd>{% endif %}
+          {% if r.amends %}<dt>Amends</dt><dd>{% for x in r.amends %}{{ m.rule_link(rules_by_id[x]) }}{{ ", " if not loop.last }}{% endfor %}</dd>{% endif %}
+          {% if r.revokes %}<dt>Revokes</dt><dd>{% for x in r.revokes %}{{ m.rule_link(rules_by_id[x]) }}{{ ", " if not loop.last }}{% endfor %}</dd>{% endif %}
+          {% if r.link_basis %}<dt>Link basis</dt><dd>{{ r.link_basis }}</dd>{% endif %}
+          {% if r.overrides %}<dt>Overrides in part</dt><dd>{{ m.links(r.overrides) }}</dd>{% endif %}
+          {% if r.overridden_by %}<dt>Overridden in part by</dt><dd>{{ m.links(r.overridden_by) }}</dd>{% endif %}
+          {% if r.implements %}<dt>Implements</dt><dd>{{ m.links(r.implements) }}</dd>{% endif %}
+          {% if r.implemented_by %}<dt>Implemented by</dt><dd>{{ m.links(r.implemented_by) }}</dd>{% endif %}
+          {% if r.grandfathered %}<dt>Still applies to</dt><dd>{{ r.grandfathered }}</dd>{% endif %}
+          {% if r.jurisdiction %}<dt>Jurisdiction</dt><dd>{{ r.jurisdiction }}</dd>{% endif %}
+          {% if r.binding == "no" %}<dt>Legal force</dt><dd>Not legally binding</dd>{% endif %}
+          <dt>Category</dt><dd>{% for c in r.categories %}<a href="{{ root }}topics/#{{ c }}">{{ categories[c].label }}</a>{{ ", " if not loop.last }}{% endfor %}</dd>
+          {% if r.technologies %}<dt>Technologies</dt><dd>{% for t in r.technologies %}<a href="{{ root }}rules/?technology={{ t }}">{{ tech_labels[t] }}</a>{{ ", " if not loop.last }}{% endfor %}</dd>{% endif %}
+          <dt>Topics</dt><dd>{% for t in r.topics %}<a href="{{ root }}topics/{{ t }}/">{{ topics[t].label }}</a>{{ ", " if not loop.last }}{% endfor %}</dd>
+          <dt>Reaches energy via</dt><dd>{{ r.energy_channel|join(", ") }}</dd>
+          <dt>Origin sector</dt><dd>{{ r.origin_sector }}</dd>
+          <dt>Verification</dt><dd>{{ m.verif(r.verification) }}{% if r.reviewed_by %}<div class="small muted">{{ r.reviewed_by }}, {{ r.reviewed_on|date }}</div>{% endif %}</dd>
+          <dt>Tracker id</dt><dd><code>{{ r.id }}</code></dd>
+        </dl>
+        <a class="btn btn-block" href="{{ r.source_url }}" target="_blank" rel="noopener">{{ "Read the official text ↗" if r.source_type == "document" else "Find it on the official portal ↗" }}</a>
+        {% if r.source_type != "document" %}<p class="small muted">A direct link to the document will be added during review.</p>{% endif %}
+      </div>
+      <div class="card side-actions">
+        <a href="{{ correction_url }}" target="_blank" rel="noopener">Suggest a correction ↗</a>
+        <a href="{{ root }}review/#rule={{ r.id }}">Review this entry</a>
+        <a href="{{ root }}rules/?country={{ r.country }}&amp;topic={{ r.topics[0] }}">More on {{ topics[r.topics[0]].label }} in {{ country.name }}</a>
+      </div>
+    </aside>
+  </div>
+</article>
+{% endblock %}

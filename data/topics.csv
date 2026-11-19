@@ -1,0 +1,25 @@
+id,label,category,description
+framework-law,Electricity framework law,electricity,"The principal electricity law and the laws amending it, which establish the legal basis for the other instruments in the sector."
+power-plans,National power plans,electricity,"Official long-term plans for generation and transmission capacity, such as Indonesia's RUPTL and Vietnam's PDP."
+grid-market-rules,Grid codes and market rules,electricity,"Technical grid codes, network access rules and the rules governing wholesale electricity markets."
+tariffs-ppa,Tariffs and PPA terms,electricity,Retail electricity tariffs and the standard terms of power purchase agreements between utilities and independent power producers.
+re-pricing,Renewable pricing and procurement,electricity,"The pricing and procurement of renewable electricity: feed-in tariffs, ceiling prices, auctions and price frames."
+rooftop-solar,Rooftop and distributed solar,electricity,"Rules on solar installations at households, commercial buildings and industrial premises: eligibility, capacity limits, and the treatment of electricity exported to the grid."
+wheeling-dppa,Power wheeling and direct PPAs,electricity,"Rules under which a consumer may contract electricity directly from a generator, either through transmission over the utility's network for a fee (wheeling) or through a direct or virtual power purchase agreement."
+captive-power,Captive power and licensing,electricity,"Rules on generation for the generator's own consumption rather than for sale to the utility, such as plants at smelters or industrial parks, and the licences such generation requires."
+coal-phase-out,Coal phase-out and early retirement,electricity,Restrictions on new coal-fired plants and plans or criteria for the early retirement of existing plants.
+energy-storage,Energy storage,electricity,"Rules on batteries, pumped hydro and other storage: licensing, grid connection, and storage requirements attached to renewable projects."
+cross-border-trade,Cross-border electricity trade,electricity,"Electricity imports and exports, interconnectors, and the licences and agreements governing cross-border power trade."
+energy-strategy,National energy strategy,energy,Economy-wide energy strategies and master plans to which power sector rules and plans refer.
+energy-efficiency,Energy efficiency,energy,"Efficiency standards, energy audits and demand-side programmes that affect energy consumption."
+carbon-pricing,Carbon pricing and GHG rules,energy,"Emissions trading, carbon taxes, offsets and the greenhouse gas reporting rules on which they depend."
+coal-supply,Coal supply obligations and price caps,energy,"Domestic market obligations for coal and caps on the price of coal supplied to power plants, which affect generation costs."
+ev-adoption,Electric vehicle adoption,energy,"Demand-side instruments for electric vehicles: purchase incentives, registration and tax treatment, adoption targets and charging infrastructure rules."
+mineral-downstreaming,Critical minerals and downstreaming,supply-chain,"Instruments on critical minerals: domestic processing requirements, ore export restrictions and mineral strategies."
+local-content,Local content requirements,supply-chain,"Requirements that projects, procurement or subsidised products use a minimum share of domestically produced goods or services."
+manufacturing-incentives,Manufacturing incentives,supply-chain,"Subsidies, tax incentives and production-linked support for manufacturing clean energy technologies and their components."
+investment-rules,Foreign investment rules,supply-chain,"Rules on foreign ownership, investment screening and approval that apply to energy and clean technology manufacturing."
+import-tariffs,Import tariffs,trade,"Customs duties and their exemptions on clean energy technologies, components and inputs."
+trade-remedies,Trade remedies,trade,"Anti-dumping, countervailing and safeguard duties on clean energy technologies and their inputs."
+import-standards,Import approvals and standards,trade,"Approved-product lists, mandatory standards and certification that determine which imported products may be sold or used."
+export-restrictions,Export restrictions,trade,"Export bans, quotas, licensing and controls on clean energy technologies, components or inputs."

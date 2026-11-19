@@ -1,0 +1,35 @@
+id,country,name,url,tier,kind,languages,access,checked,adapter,notes
+id-bpk-jdih,ID,BPK legal database (JDIH BPK),https://peraturan.bpk.go.id/,1,legal database,id,restricted,2026-11-04,,Full texts of laws and regulations at all levels; returned 403 to automated requests.
+id-jdihn,ID,National legal documentation network (JDIHN),https://jdihn.go.id,1,legal database,id,unknown,,,Federated index of ministry JDIH databases; not yet tested.
+id-esdm-jdih,ID,ESDM legal database (JDIH ESDM),https://jdih.esdm.go.id/,2,agency listing,id,open,2026-11-04,esdm,Ministerial regulations and decisions of the energy ministry with PDF links; parsed by the weekly scan.
+vn-vbpl,VN,National database of legal documents (vbpl.vn),https://vbpl.vn/,1,legal database,vi,restricted,2026-11-03,,Central and ministerial legal documents with validity status; returned 403 to automated requests.
+vn-chinhphu,VN,"Government portal, legal documents (vanban.chinhphu.vn)",https://vanban.chinhphu.vn/,1,legal database,vi,open,2026-11-04,chinhphu,"Laws, decrees, decisions and circulars with issue dates and PDF files; parsed by the weekly scan."
+th-gazette,TH,Royal Thai Government Gazette,https://ratchakitcha.soc.go.th/,1,gazette,th,restricted,2026-11-04,,"Authoritative publication and date source for Acts, Royal Decrees, Ministerial Regulations and ERC regulations; returned 403."
+th-eppo-reso,TH,EPPO resolutions database (NEPC and EPAC),https://reso.eppo.go.th/main,2,agency listing,th,open,2026-11-04,,"About 2,269 NEPC and EPAC resolutions with Buddhist Era dates and titles; paginated with ?page=N. Adapter not yet written."
+th-erc,TH,Energy Regulatory Commission (ERC),https://www.erc.or.th/,2,agency listing,th;en,unreachable,2026-11-04,,"ERC regulations, notifications, tariff decisions and hearings; connection reset."
+th-eppo,TH,Energy Policy and Planning Office (EPPO),https://www.eppo.go.th/,2,agency listing,th;en,open,2026-11-04,,"PDP, AEDP and other plans; laws listed by level."
+th-law-energy,TH,Ministry of Energy legal database,https://law.energy.go.th/,2,legal database,th,restricted,2026-11-04,,Energy laws and regulations as PDFs; redirected to a bot challenge.
+th-krisdika,TH,Office of the Council of State,https://www.krisdika.go.th/,1,legal database,th;en,unreachable,2026-11-04,,Consolidated Acts and some official English translations; connection failed.
+ph-doe,PH,Department of Energy issuances,https://doe.gov.ph/laws-and-issuances/issuances,2,agency listing,en,open,2026-11-04,,Department circulars and orders with year listings; many PDFs are scans requiring OCR. Old links return a 'Page not found' page with HTTP 200. Adapter not yet written.
+ph-naro,PH,UP Law Center National Administrative Register (NARO),https://naro.law.upd.edu.ph/,3,legal register,en,open,2026-11-04,,"Official register of administrative rules filed with ONAR, including DOE circulars and ERC resolutions, with issue and filing dates; records found from 2023 only."
+ph-erc,PH,Energy Regulatory Commission (ERC),https://www.erc.gov.ph/,2,agency listing,en,restricted,2026-11-04,,"Resolutions, decisions and orders; Cloudflare challenge (403)."
+ph-gazette,PH,Official Gazette,https://www.officialgazette.gov.ph/,1,gazette,en,restricted,2026-11-04,,Laws and executive orders; returned 403.
+ph-lawphil,PH,Lawphil (Arellano Law Foundation),https://lawphil.net/,3,legal register,en,open,2026-11-04,,Standard reference for Republic Acts and Executive Orders; not a government site.
+ph-sc-elibrary,PH,Supreme Court E-Library,https://elibrary.judiciary.gov.ph/,3,legal register,en,open,2026-11-04,,"Republic Acts, executive issuances and some DOE circulars."
+ph-iemop,PH,IEMOP (WESM market operator),https://www.iemop.ph/,3,agency listing,en,open,2026-11-04,,WESM Rules and Manuals; copies of some DOE and ERC issuances.
+my-st-library,MY,Energy Commission legislation library,https://www.st.gov.my/ms/tentang-kami/perundangan,2,agency listing,ms;en,open,2026-11-04,,"Acts, regulations, Gazette notifications, guidelines and codes with English PDFs; guideline PDFs list their revisions. Issue dates on the site may be upload dates. Adapter not yet written."
+my-agc-lom,MY,Laws of Malaysia (Attorney General's Chambers),https://lom.agc.gov.my/,1,legal database,ms;en,partial,2026-11-04,,Principal and amending Acts and subsidiary legislation; direct PDF links work but navigation uses tokenised links.
+my-gazette,MY,Federal Gazette (e-Warta),https://www.federalgazette.agc.gov.my/,1,gazette,ms;en,unreachable,2026-11-04,,Gazette as published; connection failed.
+my-seda,MY,SEDA Malaysia,https://www.seda.gov.my/,2,agency listing,en,open,2026-11-04,,"Renewable Energy Act orders and rules; FiT, NEM, Solar ATAP and LSS pages."
+my-petra,MY,Ministry of Energy Transition and Water Transformation (PETRA),https://www.petra.gov.my/,2,agency listing,ms;en,partial,2026-11-04,,"Press releases announcing charges, quotas and procurement rounds; JavaScript application without server-rendered links."
+my-ecos,MY,Energy Commission of Sabah (ECoS),https://ecos.gov.my/,2,agency listing,en;ms,open,2026-11-04,,"Sabah enactments, regulations and guidelines (jurisdiction MY-SBH)."
+my-sarawak-lawnet,MY,Sarawak LawNet,https://lawnet.sarawak.gov.my/,1,legal database,en,unreachable,2026-11-04,,Consolidated Sarawak ordinances (jurisdiction MY-SWK); connection failed.
+sg-sso,SG,Singapore Statutes Online,https://sso.agc.gov.sg/,1,legal database,en,restricted,2026-11-04,,Consolidated Acts and subsidiary legislation; returned 403 to scripts.
+sg-ema,SG,Energy Market Authority (EMA),https://www.ema.gov.sg/,2,agency listing,en,partial,2026-11-04,,"Codes, determinations, consultations and licences; JavaScript-rendered pages, direct PDF links work."
+kh-eac,KH,Electricity Authority of Cambodia (EAC),https://eac.gov.kh/site/regulation?lang=en,2,agency listing,km;en,open,2026-11-04,,"EAC regulations, many with official English versions."
+kh-mme,KH,Ministry of Mines and Energy,https://mme.gov.kh/,2,agency listing,km,unknown,,,"Ministerial prakas, mostly in Khmer."
+la-odm,LA,Open Development Laos,https://data.laos.opendevelopmentmekong.net/,4,secondary,en;lo,open,2026-11-04,,Unofficial English translations of laws; the official gazette did not respond.
+bn-agc,BN,"Attorney General's Chambers, Laws of Brunei",https://www.agc.gov.bn/,1,legal database,en;ms,unknown,,,Orders published in English.
+bn-energy,BN,"Department of Energy, Prime Minister's Office",https://www.energy.gov.bn/,2,agency listing,en;ms,unknown,,,
+tl-jornal,TL,Jornal da República,https://www.mj.gov.tl/jornal/,1,gazette,pt,unknown,,,"Official gazette, Portuguese."
+mm-odm,MM,Open Development Myanmar,https://data.opendevelopmentmekong.net/,4,secondary,en;my,open,2026-11-04,,Translations of laws; official ministry pages return errors.

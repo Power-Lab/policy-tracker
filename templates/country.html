@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block description %}{{ c.intro }}{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Countries", root ~ "countries/"), (c.name, None)]) }}
+  <p class="eyebrow">{{ c.status }} · binding texts in {{ c.language }}</p>
+  <h1>{{ c.name }}</h1>
+  <p class="lede">{{ c.intro }}</p>
+</section>
+
+<section class="container">
+  <dl class="stats">
+    <div><dt>Instruments recorded</dt><dd>{{ stats.total }}</dd></div>
+    <div><dt>Still apply</dt><dd>{{ stats.current }}</dd></div>
+    <div><dt>Revoked, replaced or expired</dt><dd>{{ stats.total - stats.current }}</dd></div>
+    <div><dt>Verified</dt><dd>{{ stats.verified }} <span class="muted">of {{ stats.total }}</span></dd></div>
+  </dl>
+</section>
+
+<section class="container section">
+  <div class="section-head"><h2>Rules by topic over time</h2><a href="{{ root }}rules/?country={{ c.code }}">List all {{ stats.total }} →</a></div>
+  <p class="muted">Each dot is a rule, placed by the date it was signed. A rule with several topics appears in each lane.</p>
+  <figure class="chart-frame scroll-x">{{ timeline }}{{ m.status_legend() }}</figure>
+</section>
+
+<section class="container section">
+  <div class="country-cols">
+    <div>
+      <h2>What applies now, by topic</h2>
+      {% for t, cur, old, upcoming in by_topic %}
+      <div class="topic-block">
+        <h3><a href="{{ root }}topics/{{ t.id }}/">{{ t.label }}</a></h3>
+        {% if cur %}
+        <ul class="related">
+          {% for r, ams in cur %}<li>{{ m.rule_link(r) }} {{ m.status(r.status) }} <span class="muted small">{{ r.date_signed|date }}</span><div class="small muted">{{ r.title_english }}</div>{{ m.amended_line(ams) }}</li>{% endfor %}
+        </ul>
+        {% else %}<p class="muted small">No rule in force recorded.</p>{% endif %}
+        {% if upcoming %}<p class="small">Coming up: {% for r in upcoming %}{{ m.rule_link(r) }} {{ m.status(r.status) }}{{ ", " if not loop.last }}{% endfor %}</p>{% endif %}
+        {% if old %}<p class="small muted">No longer in force: {% for r in old %}{{ m.rule_link(r) }}{{ ", " if not loop.last }}{% endfor %}</p>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <aside>
+      <div class="card">
+        <h2 class="facts-title">How rules are layered</h2>
+        <p class="small muted">From highest to lowest legal rank.</p>
+        <ol class="hierarchy">{% for h in c.hierarchy %}<li>{{ h }}</li>{% endfor %}</ol>
+      </div>
+      <div class="card">
+        <h2 class="facts-title">Sources searched</h2>
+        {% if registry %}
+        <p class="small muted">Tier 1: official gazette or legal database; 2: issuing body; 3: legal register; 4: secondary (discovery only). Access as last observed.</p>
+        <ul class="plain sources-list">{% for s in registry %}<li><a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }} ↗</a><div class="small muted">Tier {{ s.tier }} · {{ s.access }}{% if s.checked %} ({{ s.checked|date }}){% endif %}{% if s.adapter %} · monitored weekly{% endif %}</div></li>{% endfor %}</ul>
+        {% else %}
+        <ul class="plain">{% for s in c.sources %}<li><a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }} ↗</a></li>{% endfor %}</ul>
+        {% endif %}
+        <p class="small"><a href="https://github.com/{{ repo }}/blob/main/docs/SEARCH-PROTOCOL.md">Search protocol →</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+{% endblock %}

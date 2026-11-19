@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Topics", None)]) }}
+  <h1>Topics</h1>
+  <p class="lede">Topics are grouped in four categories and applied identically to every country to allow comparison. An instrument may belong to more than one topic.</p>
+</section>
+<section class="container">
+  {% for cid, cat in categories.items() %}
+  <h2 class="section-title category-heading cat-{{ cid }}" id="{{ cid }}"><span class="cat-mark" aria-hidden="true"></span>{{ cat.label }}</h2>
+  <p class="muted">{{ cat.description }}</p>
+  <div class="grid grid-2">
+    {% for tid, t in topics.items() if t.category == cid %}
+    <a class="card topic-card-lg" href="{{ tid }}/">
+      <h3>{{ t.label }}</h3>
+      <p class="muted small">{{ t.description }}</p>
+      <p class="small">{% for code, c in countries.items() if topic_counts[tid][code] %}<span class="country-chip">{{ c.name }}: {{ topic_counts[tid][code] }}</span> {% else %}<span class="muted">No instruments recorded yet.</span>{% endfor %}</p>
+    </a>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

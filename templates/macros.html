@@ -1,0 +1,61 @@
+{% macro status(s) -%}
+<span class="pill status s-{{ s|sslug }}"><span class="dot" aria-hidden="true"></span>{{ s }}</span>
+{%- endmacro %}
+
+{% macro verif(v) -%}
+<span class="pill verif v-{{ v|sslug }}" title="Verification: {{ v }}">{% if v == "verified" %}✓ {% endif %}{{ v }}</span>
+{%- endmacro %}
+
+{% macro rule_link(r) -%}
+<a href="{{ root }}rules/{{ r.slug }}/">{{ r.short_name }}</a>
+{%- endmacro %}
+
+{% macro rule_card(r, show_country=True) -%}
+<article class="rule-card">
+  <div class="rule-card-meta">
+    {% if show_country %}<span class="country-chip">{{ countries[r.country].name }}</span>{% endif %}
+    <span class="mono">{{ r.short_name }}</span>
+    <span class="spacer"></span>
+    <time>{{ r.date_signed|date }}</time>
+  </div>
+  <h3 class="rule-card-title"><a href="{{ root }}rules/{{ r.slug }}/">{{ r.title_english }}</a></h3>
+  <p class="rule-card-summary">{{ r.summary_english }}</p>
+  <div class="pills">
+    {{ status(r.status) }} {{ verif(r.verification) }}
+    {% for c in r.categories %}<span class="cat-chip cat-{{ c }}">{{ categories[c].label }}</span>{% endfor %}
+    {% for t in r.topics %}<a class="tag" href="{{ root }}topics/{{ t }}/">{{ topics[t].label }}</a>{% endfor %}
+  </div>
+</article>
+{%- endmacro %}
+
+{% macro chain_legend() -%}
+<p class="legend">
+  <span class="lg-line solid"></span> revokes or replaces
+  <span class="lg-line dashed"></span> amends
+  <span class="lg-line dotted"></span> overrides in part
+  {% for s in statuses %}<span class="lg-dot s-{{ s|sslug }}"></span> {{ s }} {% endfor %}
+</p>
+{%- endmacro %}
+
+{% macro status_legend() -%}
+<p class="legend">{% for s in statuses %}<span class="lg-dot s-{{ s|sslug }}"></span> {{ s }} {% endfor %}</p>
+{%- endmacro %}
+
+{% macro crumbs(items) -%}
+<nav class="crumbs" aria-label="Breadcrumb">
+  {% for label, href in items %}{% if href %}<a href="{{ href }}">{{ label }}</a>{% else %}<span aria-current="page">{{ label }}</span>{% endif %}{% if not loop.last %}<span class="sep" aria-hidden="true">/</span>{% endif %}{% endfor %}
+</nav>
+{%- endmacro %}
+
+{% macro amended_line(ams) -%}
+{% if ams %}<div class="small muted amend-line">+ amended by {% for a in ams %}{{ rule_link(a) }}{{ ", " if not loop.last }}{% endfor %}</div>{% endif %}
+{%- endmacro %}
+
+{% macro links(ids) -%}
+{% for x in ids %}{{ rule_link(rules_by_id[x]) }}{{ ", " if not loop.last }}{% endfor %}
+{%- endmacro %}
+
+{% macro flags(r) -%}
+{% if r.binding == "no" %}<span class="pill flag-pill" title="Not legally binding">non-binding</span>{% endif %}
+{% if r.jurisdiction %}<span class="pill flag-pill" title="Sub-national rule">{{ r.jurisdiction }}</span>{% endif %}
+{%- endmacro %}

@@ -1,0 +1,80 @@
+name: Weekly portal scan
+
+# Checks the official legal portals registered in data/search/ for new documents
+# that mention energy keywords, and lists them in a "Portal scan" issue for a
+# person to triage. It never edits rules.csv. The list of documents already seen
+# is kept on the watch-state branch, so main's history stays clean.
+
+on:
+  schedule:
+    - cron: "17 2 * * 1"   # Mondays 02:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: portal-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore the list of documents already seen
+        run: |
+          if git show origin/watch-state:seen.json > /tmp/seen.json 2>/dev/null; then
+            cp /tmp/seen.json data/watch/seen.json
+          else
+            echo "First run, no watch-state branch yet"
+          fi
+
+      - name: Scan portals
+        run: python3 scripts/scan_portals.py
+
+      - name: Draft entries with Claude (optional)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "No ANTHROPIC_API_KEY secret: skipping drafts"; exit 0; fi
+          pip install -q -r requirements.txt anthropic==2.4.0
+          python3 scripts/draft_entries.py || echo "Drafting failed; the scan report is still posted"
+          if [ -f drafts.md ]; then cat drafts.md >> scan_report.md; fi
+
+      - name: Save the list of documents seen
+        run: |
+          cp data/watch/seen.json /tmp/seen.json
+          cp scan_log.csv /tmp/scan_log.csv
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin watch-state >/dev/null; then
+            git checkout -q -B watch-state origin/watch-state
+          else
+            git checkout -q --orphan watch-state && git rm -rq --cached . && git clean -fdq -e scan_report.md -e scan_result.json
+          fi
+          cp /tmp/seen.json seen.json
+          # Search log of the scan runs (same columns as data/search/search-log.csv).
+          [ -f search-log.csv ] || echo "run_id,date,module,country,source_id,strategy,language,query,results,new_candidates,operator,notes" > search-log.csv
+          cat /tmp/scan_log.csv >> search-log.csv
+          git add seen.json search-log.csv
+          git commit -q -m "Portal scan $(date -u +%F)" || echo "No change"
+          git push -q origin watch-state
+
+      - name: Report in the Portal scan issue
+        run: |
+          new=$(python3 -c 'import json; print(json.load(open("scan_result.json"))["new"])')
+          fail=$(python3 -c 'import json; print(json.load(open("scan_result.json"))["failures"])')
+          if [ "$new" = "0" ] && [ "$fail" = "0" ]; then echo "Nothing new"; exit 0; fi
+          gh label create scan --color 3a6fd0 --description "Weekly portal scan results" --force
+          title="Portal scan $(date -u +%F): $new new document(s)"
+          gh issue create --title "$title" --label scan --body-file scan_report.md

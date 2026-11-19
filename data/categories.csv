@@ -1,0 +1,5 @@
+id,label,order,description
+electricity,Electricity,1,"Instruments governing electricity generation, networks, markets and prices."
+energy,Energy and climate,2,"Economy-wide energy, fuel, transport and climate instruments that affect energy demand, supply or prices."
+supply-chain,Supply chain and industrial policy,3,"Instruments on the manufacture of clean energy technologies, investment in manufacturing, and the supply of critical minerals."
+trade,Trade,4,"Border measures that affect clean energy technologies and their inputs: tariffs, trade remedies, import requirements and export restrictions."

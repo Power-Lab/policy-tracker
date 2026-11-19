@@ -1,0 +1,99 @@
+name: Review to pull request
+
+# When a review issue is opened or edited (it has the "review" label or a ```json review block), apply it to
+# data/rules.csv on a branch, run every check, and open or update a pull request.
+# A maintainer merges the PR to publish. The issue body is untrusted: it is
+# passed to the script through an environment variable (never interpolated into
+# shell) and the script only reads its JSON block.
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: review-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # Outside contributors can't set labels from the prefilled URL, so also trigger on the review block itself.
+    if: >-
+      github.event.issue.state == 'open' &&
+      (contains(github.event.issue.labels.*.name, 'review') || contains(github.event.issue.body, '```json review'))
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+      BRANCH: review/issue-${{ github.event.issue.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Label the issue
+        run: |
+          gh label create review --color 0d6b63 --description "Submitted from the reviewer view" --force
+          gh label create correction --color c2412f --description "Reported error in an entry" --force
+          gh issue edit "$ISSUE" --add-label review
+
+      - name: Apply the review
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_CREATED: ${{ github.event.issue.created_at }}
+        run: |
+          python3 scripts/apply_review.py
+          echo "ok=$(python3 -c 'import json; print(str(json.load(open("review_result.json"))["ok"]).lower())')" >> "$GITHUB_OUTPUT"
+        id: apply
+
+      - name: Run checks
+        if: steps.apply.outputs.ok == 'true'
+        run: |
+          python3 scripts/build.py
+          python3 -m unittest discover -s tests
+          python3 scripts/render.py
+          python3 scripts/check_site.py
+
+      - name: Open or update the pull request
+        if: steps.apply.outputs.ok == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add data/rules.csv
+          git commit -m "Apply review from #$ISSUE" -m "Closes #$ISSUE"
+          git push --force origin "$BRANCH"
+          {
+            cat review_summary.md
+            echo
+            echo "---"
+            echo "Checks run by the workflow before opening this PR: data validation, unit tests, site build and link check (all passed)."
+            echo
+            echo "**Merge to publish.** Closes #$ISSUE."
+          } > pr_body.md
+          if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
+            gh pr edit "$BRANCH" --body-file pr_body.md
+          else
+            gh pr create --base main --head "$BRANCH" --title "$(gh issue view "$ISSUE" --json title -q .title)" --body-file pr_body.md
+          fi
+          url=$(gh pr view "$BRANCH" --json url -q .url)
+          printf 'Thanks! This review has been turned into a pull request: %s\n\nA maintainer will check it and merge it. If you edit this issue, the pull request updates automatically.\n\n<details><summary>What will change</summary>\n\n%s\n</details>\n' "$url" "$(cat review_summary.md)" > comment.md
+          gh issue comment "$ISSUE" --edit-last --body-file comment.md 2>/dev/null || gh issue comment "$ISSUE" --body-file comment.md
+
+      - name: Report problems on the issue
+        if: steps.apply.outputs.ok != 'true'
+        run: |
+          printf 'This review could not be applied automatically.\n\n%s\n\nFix the issue (or submit again from the reviewer view) and this check will run again.\n' "$(cat review_summary.md)" > comment.md
+          gh issue comment "$ISSUE" --edit-last --body-file comment.md 2>/dev/null || gh issue comment "$ISSUE" --body-file comment.md

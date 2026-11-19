@@ -1,0 +1,8 @@
+run_id,date,module,country,source_id,strategy,language,query,results,new_candidates,operator,notes
+2026-11-03-seed,2026-11-03,power-core,ID;VN,,expert,,,56,56,compiler,"Seed entries compiled from the compilers' knowledge and secondary sources; individual queries were not logged."
+2026-11-04-scout-ph,2026-11-04,power-core,PH,,scouting,en,,30,30,agent,"Desk research (web search and official portals); sources and access results recorded in docs/scouting/ph.md; individual queries were not logged."
+2026-11-04-scout-th,2026-11-04,power-core,TH,,scouting,th;en,,29,29,agent,"Desk research; see docs/scouting/th.md; individual queries were not logged."
+2026-11-04-scout-my,2026-11-04,power-core,MY,,scouting,en;ms,,30,30,agent,"Desk research; see docs/scouting/my.md; individual queries were not logged."
+2026-11-04-scout-asean,2026-11-04,asean-expansion,SG;KH;LA;BN;TL;MM,,scouting,en,,,,agent,"Country profiles only; see docs/scouting/rest-of-asean.md; no candidate file."
+2026-11-04-scan,2026-11-04,power-core,VN,vn-chinhphu,monitoring,vi,,50,0,portal-scan,"First automated scan; 50 documents recorded as the baseline."
+2026-11-04-scan,2026-11-04,power-core,ID,id-esdm-jdih,monitoring,id,,8,0,portal-scan,"First automated scan; 8 documents recorded as the baseline."

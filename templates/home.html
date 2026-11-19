@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block body_class %}home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">Coverage: {{ countries.values()|map(attribute="name")|join(" · ") }}</p>
+    <h1 class="display">Energy and industrial policy in Asia-Pacific</h1>
+    <p class="lede">A dataset of laws, regulations, decrees and plans on electricity, energy, clean technology supply chains and trade in {{ country_names }}. Each entry records the content of the instrument, the earlier instruments it amends or revokes, and its legal status, with a link to the official source.</p>
+    <form class="hero-search" action="rules/" method="get" role="search">
+      <label class="visually-hidden" for="hero-q">Search rules</label>
+      <input id="hero-q" name="q" type="search" placeholder="Search: rooftop solar, DPPA, RUPTL, 2/2024…" autocomplete="off">
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <p class="hero-links">Browse by category: <a href="rules/?category=electricity">electricity</a>, <a href="rules/?category=energy">energy and climate</a>, <a href="rules/?category=supply-chain">supply chain and industrial policy</a> or <a href="rules/?category=trade">trade</a>.</p>
+  </div>
+</section>
+
+<section class="container">
+  <dl class="stats">
+    <div><dt>Instruments recorded</dt><dd>{{ stats.total }}</dd></div>
+    <div><dt>In force (incl. amended)</dt><dd>{{ stats.current }}</dd></div>
+    <div><dt>Countries</dt><dd>{{ countries|length }}</dd></div>
+    <div><dt>Topics</dt><dd>{{ topics|length }}</dd></div>
+    <div class="stat-progress">
+      <dt>Verified against the official text</dt>
+      <dd>{{ stats.verified }} <span class="muted">of {{ stats.total }}</span></dd>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ stats.total }}" aria-valuenow="{{ stats.verified }}"><span style="width: {{ (100 * stats.verified / stats.total)|round(1) }}%"></span></div>
+    </div>
+  </dl>
+</section>
+
+<section class="container section">
+  <div class="feature">
+    <div class="feature-text">
+      <p class="eyebrow">Example: amendment history</p>
+      <h2>Indonesia's rooftop solar regulation, 2018–2024</h2>
+      <p>{{ featured.short_name }} (2024) removed the credit for electricity exported by rooftop solar systems. It revoked {{ rules_by_id["ID-PERMEN-ESDM-2021-26"].short_name if "ID-PERMEN-ESDM-2021-26" in rules_by_id else "an earlier regulation" }}, which had itself revoked the 2018 regulation and its two amendments. Entries record these links explicitly, so the history of any instrument can be reconstructed.</p>
+      <p><a class="btn btn-secondary" href="rules/{{ featured.slug }}/">View the amendment history →</a></p>
+    </div>
+    <figure class="feature-chart">
+      {{ featured_chain }}
+      {{ m.chain_legend() }}
+    </figure>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="section-head">
+    <h2>Browse by category</h2>
+    <a href="topics/">All topics →</a>
+  </div>
+  <div class="grid grid-2 category-grid">
+    {% for cid, cat in categories.items() %}
+    <div class="category-tile cat-{{ cid }}">
+      <h3><a href="topics/#{{ cid }}">{{ cat.label }}</a></h3>
+      <p class="small">{{ cat.description }}</p>
+      <ul class="category-topics">
+        {% for tid, t in topics.items() if t.category == cid %}
+        <li><a href="topics/{{ tid }}/">{{ t.label }}</a> <span class="n">{{ topic_counts[tid] }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container section">
+  <div class="section-head">
+    <h2>Browse by country</h2>
+    <a href="compare/">Compare countries →</a>
+  </div>
+  <div class="grid grid-2">
+    {% for code, c in countries.items() %}
+    {% set s = country_stats[code] %}
+    <a class="card country-card" href="countries/{{ code|lower }}/">
+      <div class="country-card-head">
+        <span class="country-code">{{ code }}</span>
+        <h3>{{ c.name }}</h3>
+      </div>
+      <p class="muted">{{ c.intro|truncate(170) }}</p>
+      <div class="bar" aria-label="Rules by status">
+        {% for st in statuses %}{% if s.by_status[st] %}<span class="s-{{ st|sslug }}" style="flex: {{ s.by_status[st] }}" title="{{ s.by_status[st] }} {{ st }}"></span>{% endif %}{% endfor %}
+      </div>
+      <p class="small">{{ s.total }} rules · {{ s.current }} still apply · {{ s.verified }} verified</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container section">
+  <div class="section-head">
+    <h2>Most recently signed instruments</h2>
+    <a href="rules/">Explore all {{ stats.total }} →</a>
+  </div>
+  <div class="grid grid-2">
+    {% for r in recent %}{{ m.rule_card(r) }}{% endfor %}
+  </div>
+</section>
+
+<section class="container section">
+  <div class="callout info">
+    <h2>Scope and rationale</h2>
+    <p>Existing international databases record national laws, strategies and targets, and regional initiatives focus on targets and plans. We are not aware of a public source that records the implementing instruments of Asia-Pacific economies (ministerial regulations, decrees, circulars and notifications) in English together with their amendment history and legal status, across electricity, energy, manufacturing and trade. This dataset is intended to provide that record, beginning with {{ country_names }}. It supports the Power Transformation Lab's research on clean energy deployment, supply chains and trade. <a href="about/">Method and definitions →</a></p>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+  // Links from the proof of concept used index.html#rule=ID.
+  (function () {
+    var m = location.hash.match(/rule=([^&]+)/);
+    if (m) location.replace("rules/" + decodeURIComponent(m[1]).toLowerCase() + "/");
+  })();
+</script>
+{% endblock %}

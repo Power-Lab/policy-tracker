@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block description %}{{ t.description }}{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Topics", root ~ "topics/"), (t.label, None)]) }}
+  <p class="eyebrow"><a href="{{ root }}topics/#{{ t.category }}">{{ categories[t.category].label }}</a></p>
+  <h1>{{ t.label }}</h1>
+  <p class="lede">{{ t.description }}</p>
+</section>
+
+<section class="container">
+  <div class="grid grid-2 topic-countries">
+    {% for pc in per_country %}
+    <div class="card">
+      <div class="section-head">
+        <h2>{{ pc.c.name }}</h2>
+        {% if pc.rules %}<a class="small" href="{{ root }}rules/?country={{ pc.c.code }}&amp;topic={{ t.id }}">All {{ pc.rules|length }} →</a>{% endif %}
+      </div>
+      {% if not pc.rules %}
+      <p class="muted">No rules recorded yet for this topic.</p>
+      {% else %}
+      <h3 class="label-sm">What applies now</h3>
+      {% if pc.current %}
+      <ul class="related">
+        {% for r, ams in pc.current %}<li>{{ m.rule_link(r) }} {{ m.status(r.status) }} <span class="muted small">{{ r.date_signed|date }}</span><div class="small">{{ r.summary_english }}</div>{{ m.amended_line(ams) }}</li>{% endfor %}
+      </ul>
+      {% else %}<p class="muted small">No rule in force recorded.</p>{% endif %}
+      {% if pc.chains %}
+      <h3 class="label-sm">How it got here</h3>
+      {% for ch in pc.chains %}<figure class="chart-frame">{{ ch }}</figure>{% endfor %}
+      {% endif %}
+      {% if pc.upcoming %}<h3 class="label-sm">Coming up</h3>
+      <ul class="related">{% for r in pc.upcoming %}<li>{{ m.rule_link(r) }} {{ m.status(r.status) }} <span class="muted small">{{ r.date_signed|date }}</span><div class="small muted">{{ r.title_english }}</div></li>{% endfor %}</ul>{% endif %}
+      {% if pc.ended %}<p class="small muted">No longer in force: {% for r in pc.ended %}{{ m.rule_link(r) }}{{ ", " if not loop.last }}{% endfor %}</p>{% endif %}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {{ m.chain_legend() }}
+</section>
+{% endblock %}

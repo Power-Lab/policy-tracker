@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+{# 404.html is served from any URL depth, so links here are absolute to the site root. #}
+<section class="page-head container narrow">
+  <p class="eyebrow">404</p>
+  <h1>Page not found</h1>
+  <p class="lede">The page may have moved, or the rule id may be mistyped. Rule pages live at <code>/rules/&lt;id&gt;/</code> with the id in lower case.</p>
+  <form class="hero-search" action="{{ site_url }}rules/" method="get" role="search">
+    <label class="visually-hidden" for="nf-q">Search rules</label>
+    <input id="nf-q" name="q" type="search" placeholder="Search rules…">
+    <button type="submit" class="btn">Search</button>
+  </form>
+  <p><a href="{{ site_url }}">Go to the home page →</a></p>
+</section>
+{% endblock %}

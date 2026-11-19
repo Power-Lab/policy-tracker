@@ -1,0 +1,65 @@
+name: Accept drafted entries
+
+# A maintainer comments "/accept ID-..." on a portal-scan issue; the drafted rows
+# are added to data/rules.csv as unverified and opened as a pull request.
+# Only owners, members and collaborators can trigger it.
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  accept:
+    if: >-
+      startsWith(github.event.comment.body, '/accept') &&
+      contains(github.event.issue.labels.*.name, 'scan') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+      BRANCH: drafts/issue-${{ github.event.issue.number }}-${{ github.event.comment.id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Add the drafted rows
+        id: accept
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          python3 scripts/accept_draft.py
+          echo "ok=$(python3 -c 'import json; print(str(json.load(open("accept_result.json"))["ok"]).lower())')" >> "$GITHUB_OUTPUT"
+      - name: Run checks
+        if: steps.accept.outputs.ok == 'true'
+        run: |
+          python3 -m unittest discover -s tests
+          python3 scripts/render.py
+          python3 scripts/check_site.py
+      - name: Open the pull request
+        if: steps.accept.outputs.ok == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add data/rules.csv
+          git commit -m "Add drafted entries from #$ISSUE"
+          git push --force origin "$BRANCH"
+          { cat accept_summary.md; echo; echo "From the portal scan in #$ISSUE. Checks (tests, build, link check) passed."; } > pr_body.md
+          gh pr create --base main --head "$BRANCH" --title "Add drafted entries from #$ISSUE" --body-file pr_body.md
+          gh issue comment "$ISSUE" --body "Opened $(gh pr view "$BRANCH" --json url -q .url)"
+      - name: Report problems
+        if: steps.accept.outputs.ok != 'true'
+        run: gh issue comment "$ISSUE" --body-file accept_summary.md

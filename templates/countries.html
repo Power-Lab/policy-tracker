@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Countries", None)]) }}
+  <h1>Countries</h1>
+  <p class="lede">The tracker covers {{ country_names }}. Indonesia and Vietnam came first, to test whether one schema fits two different legal systems. The countries added since were compiled from desk research and are unverified until a country reviewer checks them.</p>
+</section>
+<section class="container">
+  <div class="grid grid-2">
+    {% for code, c in countries.items() %}
+    {% set s = country_stats[code] %}
+    <a class="card country-card" href="{{ code|lower }}/">
+      <div class="country-card-head"><span class="country-code">{{ code }}</span><h2>{{ c.name }}</h2></div>
+      <p class="muted">{{ c.intro }}</p>
+      <div class="bar">{% for st in statuses %}{% if s.by_status[st] %}<span class="s-{{ st|sslug }}" style="flex: {{ s.by_status[st] }}" title="{{ s.by_status[st] }} {{ st }}"></span>{% endif %}{% endfor %}</div>
+      <p class="small">{{ s.total }} rules · {{ s.current }} still apply · {{ s.verified }} verified · {{ c.status }}</p>
+    </a>
+    {% endfor %}
+  </div>
+  <h2 class="section-title">Coverage roadmap</h2>
+  <p class="muted">Countries scouted for the next phases, in the order we plan to add them. A scouting report for each covers the legal sources, the main instruments since 2017 and the principal difficulties in compiling the record.</p>
+  <div class="table-wrap">
+    <table class="roadmap">
+      <thead><tr><th scope="col">#</th><th scope="col">Country</th><th scope="col">Phase</th><th scope="col">Binding texts</th><th scope="col">Est. rules</th><th scope="col">Difficulty</th><th scope="col">Scouting notes</th></tr></thead>
+      <tbody>
+        {% for p in pipeline %}
+        <tr>
+          <td class="muted">{{ p.order }}</td>
+          <th scope="row">{{ p.name }}</th>
+          <td>{{ p.phase }}</td>
+          <td>{{ p.binding_language }}<div class="small muted">{{ p.english }}</div></td>
+          <td class="est">{{ p.est_rules }}</td>
+          <td><span class="pill diff d-{{ p.difficulty }}">{{ p.difficulty }}</span></td>
+          <td class="small">{{ p.summary }}
+            <div class="roadmap-links">{% for s in p.sources %}<a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }} ↗</a>{% endfor %}<a href="https://github.com/{{ repo }}/blob/main/docs/scouting/{{ p.report }}">Scouting report →</a></div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

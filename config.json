@@ -1,0 +1,12 @@
+{
+  "reviews": {
+    "multi_rule": true,
+    "max_rules_per_review": 10,
+    "label": "review"
+  },
+  "drafting": {
+    "enabled": true,
+    "model": "claude-opus-5-5",
+    "max_per_run": 5
+  }
+}

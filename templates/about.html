@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block description %}What the tracker covers, how entries are made and checked, and what each status means.{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("About", None)]) }}
+  <h1>About the tracker</h1>
+  <p class="lede">A public, English-language dataset of laws, regulations and plans on electricity, energy, clean technology supply chains and trade in Asia-Pacific, compiled from official sources and maintained by the <a href="https://pwrlab.org/">Power Transformation Lab</a> at the University of California San Diego through a documented review process.</p>
+</section>
+
+<div class="container prose-layout">
+  <nav class="toc" aria-label="On this page">
+    <a href="#what">What it covers</a>
+    <a href="#status">Status definitions</a>
+    <a href="#verification">Verification</a>
+    <a href="#process">How entries are made</a>
+    <a href="#search">Search protocol</a>
+    <a href="#limitations">Limitations</a>
+    <a href="#contribute">Contribute</a>
+    <a href="#disclaimer">Disclaimer</a>
+  </nav>
+  <div class="prose">
+    <h2 id="what">What it covers</h2>
+    <p>Instruments are classified in four categories: <strong>electricity</strong> (generation, networks, markets and prices), <strong>energy and climate</strong> (energy strategy, efficiency, carbon pricing, fuel supply and electric vehicle adoption), <strong>supply chain and industrial policy</strong> (critical minerals, local content, manufacturing incentives and investment rules) and <strong>trade</strong> (tariffs, trade remedies, import requirements and export restrictions). Each category is divided into topics that are applied identically in every country. The dataset covers instruments at every level of the legal hierarchy (laws, regulations, decrees, decisions, circulars, notifications and national plans), not only framework laws and targets. For each instrument it records its content, the channel through which it affects the energy sector, the earlier instruments it amends, revokes, implements or overrides, and its current legal status.</p>
+    <p>Instruments that concern specific technologies (solar PV, wind, batteries, electric vehicles, grid equipment, hydrogen) are tagged accordingly, so that deployment, manufacturing and trade measures for the same technology can be read together.</p>
+    <p>Coverage now spans {{ country_names }}: power sector rules from 2017 on, plus older rules that current rules still point to. Indonesia and Vietnam were the proof of concept; the other countries were added from desk research and are all <em>unverified</em> until a country reviewer checks them. The <a href="{{ root }}countries/">Countries page</a> shows the roadmap for the rest of ASEAN.</p>
+
+    <h2 id="status">Status definitions</h2>
+    <dl class="defs">
+      <dt>{{ m.status("in force") }}</dt><dd>Applies today with no recorded amendments.</dd>
+      <dt>{{ m.status("amended") }}</dt><dd>Still applies, but later rules have changed part of it. Read it together with the amending rules.</dd>
+      <dt>{{ m.status("pending") }}</dt><dd>Adopted, but not yet in force (for example, waiting for its commencement date or an implementing rule).</dd>
+      <dt>{{ m.status("draft") }}</dt><dd>Proposed or under consultation, not adopted. Included where it is under formal consideration; it may be amended before adoption or not adopted.</dd>
+      <dt>{{ m.status("replaced") }}</dt><dd>Superseded by a newer rule on the same subject, for example a new plan or a decree reissued under a new law.</dd>
+      <dt>{{ m.status("revoked") }}</dt><dd>Expressly cancelled by a later rule.</dd>
+      <dt>{{ m.status("expired") }}</dt><dd>Ended on its own terms, such as a feed-in tariff window that closed. Contracts signed under it may continue.</dd>
+    </dl>
+
+    <h2 id="verification">Verification</h2>
+    <dl class="defs">
+      <dt>{{ m.verif("verified") }}</dt><dd>A country reviewer has checked the status, dates, summary and every amendment link against the official text.</dd>
+      <dt>{{ m.verif("partly verified") }}</dt><dd>Some of those checks are done; the rule page says which.</dd>
+      <dt>{{ m.verif("unverified") }}</dt><dd>Compiled from secondary sources or drafted with a language model, and not yet checked against the official text. It should not be relied on without consulting the source.</dd>
+    </dl>
+    <p>Because an incorrect status is more misleading than a missing one, every entry states its verification level and the date on which its status was last checked.</p>
+
+    <h2 id="process">How entries are made</h2>
+    <ol>
+      <li><strong>Identification.</strong> New or amended instruments are identified on official legal portals (for Indonesia, the BPK and ESDM legal databases; for Vietnam, the national legal database and government portal; sources for other countries are listed on each country page). A weekly automated scan of selected portals flags candidate documents for manual triage.</li>
+      <li><strong>Drafting.</strong> An entry is drafted with its fields, English title and summary, topic tags and proposed links to earlier instruments. Drafts may be prepared by a compiler or with a language model; either way they are marked unverified.</li>
+      <li><strong>Review.</strong> A country reviewer checks the status, dates, summary and every link against the official text. Only then is the entry marked verified.</li>
+      <li><strong>Consistency.</strong> When a new instrument amends or revokes an earlier one, the earlier entry's status is updated in the same review. Automated checks flag statuses that contradict the recorded links.</li>
+      <li><strong>Publication.</strong> The site is regenerated from the data after each accepted change, and the full change history is kept in the project's version control.</li>
+    </ol>
+    <p><strong>Current state of the data.</strong> Entries for Indonesia and Vietnam were compiled from the compilers' knowledge of the instruments and secondary sources; entries for Thailand, the Philippines and Malaysia were compiled from desk research documented in the project's <a href="https://github.com/{{ repo }}/tree/main/docs/scouting">scouting reports</a>. No entry has yet been verified against the official text.</p>
+
+    <h2 id="search">Search protocol</h2>
+    <p>Instruments are identified under a written <a href="https://github.com/{{ repo }}/blob/main/docs/SEARCH-PROTOCOL.md">search and inclusion protocol</a>, structured like a systematic review protocol. Searches are organised in modules, each defined by a set of countries, topics and a start date. Each module combines five strategies: enumeration of official issuance listings, keyword searches with a controlled multilingual vocabulary, citation chasing through the amending and implementing provisions of recorded instruments, weekly automated monitoring of selected portals, and consultation with country experts.</p>
+    <p>Candidates are screened against stated eligibility criteria in two stages (title, then full text), and each exclusion is recorded with a reason code. Sources are ranked in four tiers, from official gazettes to secondary literature; secondary sources may identify a candidate but cannot be the sole basis of a verified entry. The source registry, vocabulary, screening log and search log are published with the data.</p>
+
+    <h2 id="limitations">Limitations</h2>
+    <ul>
+      <li><strong>Coverage is incomplete.</strong> The dataset does not yet include every relevant instrument in any country. An absent entry does not mean that no instrument exists.</li>
+      <li><strong>Status records the legal position, not implementation.</strong> An instrument recorded as in force may be applied partially, late or not at all. The dataset does not assess implementation or enforcement.</li>
+      <li><strong>Summaries are interpretive.</strong> They describe the main provisions in plain language and omit detail, conditions and exceptions found in the binding text.</li>
+      <li><strong>Dates may be partial.</strong> Where only the year or month is known, the date is recorded at that precision and plotted at the middle of the period.</li>
+      <li><strong>Some links are inferred.</strong> Where an instrument supersedes another without an express clause, the link is marked "implied by successor".</li>
+      <li><strong>Sources vary in accessibility.</strong> Several official portals restrict automated access, and some entries link to a portal search or a secondary source until a direct link to the document is added.</li>
+    </ul>
+
+    <h2 id="contribute">Contribute</h2>
+    <p>Corrections are welcome. Every rule page has a <em>Suggest a correction</em> link that opens a pre-filled issue on GitHub. Country reviewers use the <a href="{{ root }}review/">reviewer view</a> to work through unverified entries and submit checked versions.</p>
+    <p>Research institutes interested in reviewing the entries for a country can contact the maintainers through <a href="https://github.com/{{ repo }}/issues">the project's GitHub</a>.</p>
+
+    <h2 id="disclaimer">Disclaimer</h2>
+    <p>The dataset is a research resource and does not constitute legal advice. Summaries and English titles are the compilers' own and necessarily simplify the binding text. The official source should be consulted before relying on an instrument's status.</p>
+  </div>
+</div>
+{% endblock %}

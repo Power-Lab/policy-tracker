@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block description %}Search and filter every rule in the tracker by country, topic, status, document type and verification.{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Explore", None)]) }}
+  <h1>Explore rules</h1>
+  <p class="lede">Search all {{ rules|length }} entries, or filter them by category, country, topic, status, technology, document type and verification. Filter settings are kept in the page address, so a filtered view can be cited or shared.</p>
+</section>
+
+<div class="container explore">
+  <aside class="facets" id="facets" aria-label="Filters">
+    <div class="facet-search">
+      <label for="q">Search</label>
+      <input id="q" type="search" placeholder="Title, number, summary…" autocomplete="off">
+    </div>
+    <details class="facet" open>
+      <summary>Category</summary>
+      {% for cid, cat in categories.items() %}<label class="check"><input type="checkbox" name="category" value="{{ cid }}"> <span><span class="cat-dot cat-{{ cid }}"></span> {{ cat.label }}</span> <span class="n" data-count="category:{{ cid }}"></span></label>{% endfor %}
+    </details>
+    <details class="facet" open>
+      <summary>Country</summary>
+      {% for code, c in countries.items() %}<label class="check"><input type="checkbox" name="country" value="{{ code }}"> <span>{{ c.name }}</span> <span class="n" data-count="country:{{ code }}"></span></label>{% endfor %}
+    </details>
+    <details class="facet" open>
+      <summary>Status</summary>
+      {% for s in statuses %}<label class="check"><input type="checkbox" name="status" value="{{ s }}"> <span><span class="lg-dot s-{{ s|sslug }}"></span> {{ s }}</span> <span class="n" data-count="status:{{ s }}"></span></label>{% endfor %}
+    </details>
+    <details class="facet" open>
+      <summary>Topic</summary>
+      {% for tid, t in topics.items() %}<label class="check"><input type="checkbox" name="topic" value="{{ tid }}"> <span>{{ t.label }}</span> <span class="n" data-count="topic:{{ tid }}"></span></label>{% endfor %}
+    </details>
+    <details class="facet">
+      <summary>Technology</summary>
+      {% for tch in technologies %}<label class="check"><input type="checkbox" name="technology" value="{{ tch }}"> <span>{{ tech_labels[tch] }}</span> <span class="n" data-count="technology:{{ tch }}"></span></label>{% endfor %}
+    </details>
+    <details class="facet">
+      <summary>Document type</summary>
+      {% for d in doc_types %}<label class="check"><input type="checkbox" name="doc_type" value="{{ d }}"> <span>{{ d }}</span> <span class="n" data-count="doc_type:{{ d }}"></span></label>{% endfor %}
+    </details>
+    <details class="facet">
+      <summary>Verification</summary>
+      {% for v in verification %}<label class="check"><input type="checkbox" name="verification" value="{{ v }}"> <span>{{ v }}</span> <span class="n" data-count="verification:{{ v }}"></span></label>{% endfor %}
+    </details>
+    <button type="button" class="btn btn-ghost" id="clear">Clear all filters</button>
+  </aside>
+
+  <section class="results">
+    <div class="results-bar">
+      <p id="result-count" aria-live="polite">{{ rules|length }} rules</p>
+      <div class="results-tools">
+        <label for="sort" class="small muted">Sort</label>
+        <select id="sort">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+          <option value="country">Country, then date</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+    </div>
+    <div id="active-filters" class="active-filters"></div>
+    <div id="results" class="results-list">
+      {% for r in rules %}
+      <div class="result" data-id="{{ r.id }}" data-country="{{ r.country }}" data-status="{{ r.status }}"
+           data-topic="{{ r.topics|join(' ') }}" data-category="{{ r.categories|join(' ') }}" data-technology="{{ r.technologies|join(' ') }}" data-doc_type="{{ r.doc_type }}" data-verification="{{ r.verification }}"
+           data-date="{{ r.date_signed }}" data-name="{{ r.short_name }}"
+           data-text="{{ [r.id, r.short_name, r.number, r.title_english, r.title_original, r.summary_english, r.issuing_body]|join(' ')|lower }}">
+        {{ m.rule_card(r) }}
+      </div>
+      {% endfor %}
+    </div>
+    <p id="no-results" class="empty" hidden>No rules match these filters. <button type="button" class="link" id="clear-2">Clear filters</button></p>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ root }}assets/js/explore.js"></script>{% endblock %}

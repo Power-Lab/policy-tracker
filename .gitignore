@@ -1,0 +1,17 @@
+__pycache__/
+.DS_Store
+_site/
+data/watch/seen.json
+scan_report.md
+scan_result.json
+review_result.json
+review_summary.md
+pr_body.md
+comment.md
+scan_hits.json
+drafts.md
+drafts.csv
+accept_result.json
+accept_summary.md
+data/staging/
+scan_log.csv

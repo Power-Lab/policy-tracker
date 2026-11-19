@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block description %}Download the tracker data as CSV or JSON, with field definitions and allowed values.{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Data", None)]) }}
+  <h1>Data</h1>
+  <p class="lede">The dataset is available in CSV and JSON formats. Each row describes one instrument; links to other instruments refer to their ids, so amendment chains can be followed in either direction.</p>
+</section>
+
+<section class="container">
+  <div class="grid grid-2">
+    <a class="card download" href="rules.csv" download>
+      <span class="file-type">CSV</span>
+      <div><h2>rules.csv</h2><p class="muted small">{{ n_rules }} rules. List fields are separated by semicolons. Includes the derived <code>amended_by</code> and <code>revoked_by</code> columns.</p></div>
+    </a>
+    <a class="card download" href="sources.csv" download>
+      <span class="file-type">CSV</span>
+      <div><h2>sources.csv</h2><p class="muted small">The source registry used in the search protocol: each portal's tier, languages and last observed access status.</p></div>
+    </a>
+    <a class="card download" href="rules.json" download>
+      <span class="file-type">JSON</span>
+      <div><h2>rules.json</h2><p class="muted small">The same rules with lists as arrays, plus topics, countries and allowed values.</p></div>
+    </a>
+  </div>
+  <div class="callout info section-sm">
+    <p><strong>Before you use it:</strong> check each row's <code>verification</code> and <code>status_checked</code> fields. Unverified rows were drafted from secondary sources and have not yet been checked against the official text. The data is updated by commits to <a href="https://github.com/{{ repo }}/blob/main/data/rules.csv">data/rules.csv</a>, so the commit history is the full change log.</p>
+  </div>
+</section>
+
+<section class="container section">
+  <h2>Fields</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th scope="col">Field</th><th scope="col">Description</th><th scope="col">Example</th></tr></thead>
+      <tbody>
+        {% for f in fields %}
+        <tr><td><code>{{ f.field }}</code></td><td>{{ f.description }}{% if f.field in vocab %}<div class="small muted">Allowed: {{ vocab[f.field]|reject("equalto", "")|join(", ") }}</div>{% elif f.field == "topics" %}<div class="small muted">Allowed: <a href="{{ root }}topics/">see topics</a></div>{% endif %}</td><td class="small mono">{{ f.example }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="container section">
+  <h2>Licence and citation</h2>
+  <p>The data is free to reuse, including commercially, under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>: credit the tracker and say if you changed anything. The official legal texts it links to are not covered. Details in <a href="https://github.com/{{ repo }}/blob/main/LICENSE-DATA.md">LICENSE-DATA.md</a>.</p>
+  <div class="cite">
+    <p id="cite-data">{{ site_name }} ({{ generated[:4] }}). Dataset of energy, electricity, supply chain and trade policy instruments in {{ country_names }}, version of {{ generated|date }}. {{ site_url }}data/</p>
+    <button type="button" class="btn btn-ghost btn-sm" data-copy="#cite-data">Copy</button>
+  </div>
+</section>
+{% endblock %}

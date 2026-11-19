@@ -1,0 +1,126 @@
+topic,language,terms,exclude,status
+_general,en,electricity;electric power;energy;power plant;renewable energy;coal;natural gas;LNG;grid;transmission;carbon;greenhouse gas,electronic,draft
+_general,id,listrik;ketenagalistrikan;energi;pembangkit;energi baru terbarukan;EBT;batubara;batu bara;gas bumi;jaringan;karbon;emisi;PLN;RUPTL;PLTS;surya;panas bumi;mineral,elektronik,draft: needs review by a native speaker
+_general,vi,điện;điện lực;năng lượng;nhà máy điện;năng lượng tái tạo;than;khí thiên nhiên;LNG;lưới điện;các-bon;phát thải;khí nhà kính;EVN;điện mặt trời;điện gió;than đá;carbon;quy hoạch điện;mua bán điện;khoáng sản;xăng;dầu khí,điện tử;điện thoại;điện ảnh;điện báo;điện tín;điện mừng;điện chia buồn;hóa đơn điện tử;giao dịch điện tử,draft: needs review by a native speaker
+_general,th,ไฟฟ้า;พลังงาน;โรงไฟฟ้า;พลังงานหมุนเวียน;ถ่านหิน;ก๊าซธรรมชาติ;ระบบโครงข่าย;คาร์บอน;ก๊าซเรือนกระจก;กกพ.;กพช.,อิเล็กทรอนิกส์,draft: needs review by a native speaker
+_general,ms,elektrik;tenaga;loji janakuasa;tenaga boleh baharu;arang batu;gas asli;grid;karbon;gas rumah hijau;Suruhanjaya Tenaga;TNB,elektronik,draft: needs review by a native speaker
+captive-power,en,captive power;self-generation;own use;private generation licence;industrial park power,,draft
+captive-power,id,kepentingan sendiri;IUPTLS;pembangkit captive;wilayah usaha;kawasan industri,,draft: needs review by a native speaker
+captive-power,vi,"tự sản xuất, tự tiêu thụ;tự dùng;giấy phép hoạt động điện lực",,draft: needs review by a native speaker
+captive-power,th,ผลิตไฟฟ้าใช้เอง;การยกเว้นใบอนุญาต;ใบอนุญาตประกอบกิจการพลังงาน,,draft: needs review by a native speaker
+captive-power,ms,kegunaan sendiri;lesen persendirian;penjanaan sendiri,,draft: needs review by a native speaker
+wheeling-dppa,en,power wheeling;third-party access;direct power purchase agreement;DPPA;virtual PPA;open access;retail competition;green energy option,,draft
+wheeling-dppa,id,pemanfaatan bersama jaringan;power wheeling;sewa jaringan;jual beli tenaga listrik langsung,,draft: needs review by a native speaker
+wheeling-dppa,vi,mua bán điện trực tiếp;DPPA;khách hàng sử dụng điện lớn;truyền tải thuê,,draft: needs review by a native speaker
+wheeling-dppa,th,ซื้อขายไฟฟ้าโดยตรง;Direct PPA;การเข้าถึงระบบโครงข่ายไฟฟ้า;บุคคลที่สาม;TPA,,draft: needs review by a native speaker
+wheeling-dppa,ms,akses pihak ketiga;CRESS;perjanjian pembelian tenaga;caj akses sistem,,draft: needs review by a native speaker
+rooftop-solar,en,rooftop solar;net metering;net billing;distributed generation;solar self-consumption,,draft
+rooftop-solar,id,PLTS atap;pembangkit listrik tenaga surya atap;ekspor impor listrik;kuota PLTS,,draft: needs review by a native speaker
+rooftop-solar,vi,"điện mặt trời mái nhà;tự sản xuất, tự tiêu thụ;điện mặt trời áp mái",,draft: needs review by a native speaker
+rooftop-solar,th,โซลาร์รูฟท็อป;พลังงานแสงอาทิตย์บนหลังคา;โซลาร์ภาคประชาชน;หักลบหน่วย,,draft: needs review by a native speaker
+rooftop-solar,ms,solar bumbung;meter bersih;NEM;Solar ATAP;SELCO,,draft: needs review by a native speaker
+tariffs-ppa,en,electricity tariff;retail tariff;power purchase agreement;PPA;tariff adjustment;fuel adjustment,,draft
+tariffs-ppa,id,tarif tenaga listrik;perjanjian jual beli tenaga listrik;PJBL;biaya pokok penyediaan;BPP,,draft: needs review by a native speaker
+tariffs-ppa,vi,giá bán lẻ điện;biểu giá điện;hợp đồng mua bán điện;khung giá phát điện,,draft: needs review by a native speaker
+tariffs-ppa,th,อัตราค่าไฟฟ้า;ค่าเอฟที;ค่า Ft;สัญญาซื้อขายไฟฟ้า,,draft: needs review by a native speaker
+tariffs-ppa,ms,tarif elektrik;tarif asas;pelarasan bahan api;perjanjian pembelian kuasa,,draft: needs review by a native speaker
+re-pricing,en,feed-in tariff;renewable energy auction;green energy auction;ceiling price;renewable portfolio standard;large scale solar,,draft
+re-pricing,id,harga pembelian tenaga listrik energi terbarukan;harga patokan tertinggi;feed-in tariff;lelang,,draft: needs review by a native speaker
+re-pricing,vi,giá FIT;cơ chế khuyến khích;đấu thầu;khung giá điện mặt trời;điện gió,,draft: needs review by a native speaker
+re-pricing,th,อัตรารับซื้อไฟฟ้า;Feed-in Tariff;การรับซื้อไฟฟ้าจากพลังงานหมุนเวียน,,draft: needs review by a native speaker
+re-pricing,ms,tarif galakan;FiT;solar berskala besar;LSS;bidaan,,draft: needs review by a native speaker
+coal-phase-out,en,coal phase-out;early retirement;coal moratorium;coal-fired power plant;decommissioning,,draft
+coal-phase-out,id,pensiun dini PLTU;penghentian PLTU;peta jalan transisi energi;PLTU batubara,,draft: needs review by a native speaker
+coal-phase-out,vi,nhiệt điện than;dừng hoạt động;chuyển đổi năng lượng công bằng,,draft: needs review by a native speaker
+coal-phase-out,th,โรงไฟฟ้าถ่านหิน;ปลดระวาง;ยกเลิกการใช้ถ่านหิน,,draft: needs review by a native speaker
+coal-phase-out,ms,henti operasi loji arang batu;penamatan arang batu,,draft: needs review by a native speaker
+power-plans,en,power development plan;PDP;energy plan;generation expansion plan;transmission development plan,,draft
+power-plans,id,rencana usaha penyediaan tenaga listrik;RUPTL;rencana umum ketenagalistrikan;RUKN,,draft: needs review by a native speaker
+power-plans,vi,quy hoạch phát triển điện lực;quy hoạch điện VIII;kế hoạch thực hiện quy hoạch,,draft: needs review by a native speaker
+power-plans,th,แผนพัฒนากำลังผลิตไฟฟ้า;PDP;แผนพลังงานชาติ;แผนพัฒนาพลังงานทดแทน;AEDP,,draft: needs review by a native speaker
+power-plans,ms,pelan pembangunan penjanaan;Peta Hala Tuju Peralihan Tenaga Negara;NETR,,draft: needs review by a native speaker
+grid-market-rules,en,grid code;wholesale electricity market;spot market;market rules;system operator;dispatch,,draft
+grid-market-rules,id,aturan jaringan;grid code;pasar tenaga listrik;operasi sistem,,draft: needs review by a native speaker
+grid-market-rules,vi,quy định hệ thống điện truyền tải;thị trường điện cạnh tranh;thị trường bán buôn điện,,draft: needs review by a native speaker
+grid-market-rules,th,ข้อกำหนดการเชื่อมต่อระบบโครงข่ายไฟฟ้า;Grid Code;ตลาดไฟฟ้า,,draft: needs review by a native speaker
+grid-market-rules,ms,kod grid;pasaran tenaga;pengendali sistem grid;NEDA,,draft: needs review by a native speaker
+framework-law,en,electricity act;electric power industry reform act;energy industry act;electricity supply act;renewable energy act,,draft
+framework-law,id,undang-undang ketenagalistrikan;cipta kerja;peraturan pemerintah ketenagalistrikan,,draft: needs review by a native speaker
+framework-law,vi,"Luật Điện lực;sửa đổi, bổ sung Luật Điện lực;quy định chi tiết",,draft: needs review by a native speaker
+framework-law,th,พระราชบัญญัติการประกอบกิจการพลังงาน;พระราชกฤษฎีกา;กฎกระทรวง,,draft: needs review by a native speaker
+framework-law,ms,Akta Bekalan Elektrik;Akta Tenaga Boleh Baharu;Akta Suruhanjaya Tenaga,,draft: needs review by a native speaker
+cross-border-trade,en,electricity import;electricity export;interconnector;cross-border trade;ASEAN Power Grid,,draft
+cross-border-trade,id,ekspor tenaga listrik;impor tenaga listrik;interkoneksi;jual beli tenaga listrik lintas negara,,draft: needs review by a native speaker
+cross-border-trade,vi,xuất khẩu điện;nhập khẩu điện;liên kết lưới điện,,draft: needs review by a native speaker
+cross-border-trade,th,การนำเข้าไฟฟ้า;การส่งออกไฟฟ้า;การซื้อขายไฟฟ้าข้ามพรมแดน,,draft: needs review by a native speaker
+cross-border-trade,ms,import elektrik;eksport elektrik;perdagangan tenaga rentas sempadan;ENEGEM,,draft: needs review by a native speaker
+energy-storage,en,energy storage;battery energy storage;BESS;pumped storage,,draft
+energy-storage,id,penyimpanan energi;baterai;BESS;pembangkit listrik tenaga air pompa,,draft: needs review by a native speaker
+energy-storage,vi,lưu trữ năng lượng;hệ thống pin lưu trữ;BESS;thủy điện tích năng,,draft: needs review by a native speaker
+energy-storage,th,ระบบกักเก็บพลังงาน;แบตเตอรี่;BESS,,draft: needs review by a native speaker
+energy-storage,ms,penyimpanan tenaga;sistem penyimpanan tenaga bateri;BESS,,draft: needs review by a native speaker
+mineral-downstreaming,en,export ban;mineral processing;smelter;downstreaming;ore export,,draft
+mineral-downstreaming,id,larangan ekspor;hilirisasi;pengolahan dan pemurnian;smelter;bijih nikel;mineral,,draft: needs review by a native speaker
+mineral-downstreaming,vi,cấm xuất khẩu khoáng sản;chế biến sâu;khoáng sản,,draft: needs review by a native speaker
+mineral-downstreaming,th,แร่;การส่งออกแร่;การแปรรูปแร่,,draft: needs review by a native speaker
+mineral-downstreaming,ms,larangan eksport;pemprosesan mineral;nadir bumi,,draft: needs review by a native speaker
+coal-supply,en,domestic market obligation;coal price cap;coal supply;coal reference price,,draft
+coal-supply,id,kewajiban pasokan dalam negeri;DMO;harga batubara;pemenuhan kebutuhan batubara dalam negeri,harga batubara acuan,draft: needs review by a native speaker
+coal-supply,vi,cung cấp than cho sản xuất điện;giá than,,draft: needs review by a native speaker
+coal-supply,th,ถ่านหินสำหรับผลิตไฟฟ้า;ราคาถ่านหิน,,draft: needs review by a native speaker
+coal-supply,ms,bekalan arang batu;harga arang batu,,draft: needs review by a native speaker
+carbon-pricing,en,carbon tax;emissions trading;carbon market;carbon credit;greenhouse gas inventory;MRV,,draft
+carbon-pricing,id,nilai ekonomi karbon;perdagangan karbon;pajak karbon;persetujuan teknis batas atas emisi;PTBAE,,draft: needs review by a native speaker
+carbon-pricing,vi,thị trường các-bon;hạn ngạch phát thải;kiểm kê khí nhà kính;tín chỉ các-bon,,draft: needs review by a native speaker
+carbon-pricing,th,ภาษีคาร์บอน;การซื้อขายคาร์บอน;คาร์บอนเครดิต;ก๊าซเรือนกระจก;การเปลี่ยนแปลงสภาพภูมิอากาศ,,draft: needs review by a native speaker
+carbon-pricing,ms,cukai karbon;pasaran karbon;kredit karbon;gas rumah hijau,,draft: needs review by a native speaker
+energy-strategy,en,national energy policy;energy strategy;energy transition roadmap;energy master plan,,draft
+energy-strategy,id,kebijakan energi nasional;KEN;rencana umum energi nasional;RUEN,,draft: needs review by a native speaker
+energy-strategy,vi,chiến lược phát triển năng lượng quốc gia;quy hoạch tổng thể về năng lượng quốc gia,,draft: needs review by a native speaker
+energy-strategy,th,แผนพลังงานชาติ;นโยบายพลังงาน;แผนบูรณาการพลังงานระยะยาว,,draft: needs review by a native speaker
+energy-strategy,ms,Dasar Tenaga Negara;pelan tindakan tenaga,,draft: needs review by a native speaker
+energy-efficiency,en,energy efficiency;energy conservation;energy audit;minimum energy performance standard;MEPS,,draft
+energy-efficiency,id,konservasi energi;efisiensi energi;manajemen energi;audit energi,,draft: needs review by a native speaker
+energy-efficiency,vi,sử dụng năng lượng tiết kiệm và hiệu quả;kiểm toán năng lượng;dán nhãn năng lượng,,draft: needs review by a native speaker
+energy-efficiency,th,การอนุรักษ์พลังงาน;ประสิทธิภาพพลังงาน;การตรวจสอบพลังงาน,,draft: needs review by a native speaker
+energy-efficiency,ms,kecekapan tenaga;pengurusan tenaga;audit tenaga;Akta Kecekapan dan Penjimatan Tenaga,,draft: needs review by a native speaker
+ev-adoption,en,electric vehicle;EV incentive;registration fee;charging station;electric motorcycle;zero emission vehicle,,draft
+ev-adoption,id,kendaraan bermotor listrik berbasis baterai;KBLBB;insentif kendaraan listrik;stasiun pengisian kendaraan listrik;SPKLU,,draft: needs review by a native speaker
+ev-adoption,vi,ô tô điện;xe điện;lệ phí trước bạ;trạm sạc;phương tiện giao thông điện,,draft: needs review by a native speaker
+ev-adoption,th,รถยนต์ไฟฟ้า;ยานยนต์ไฟฟ้า;EV 3.0;EV 3.5;สถานีอัดประจุไฟฟ้า,,draft: needs review by a native speaker
+ev-adoption,ms,kenderaan elektrik;EV;stesen pengecasan;insentif kenderaan elektrik,,draft: needs review by a native speaker
+local-content,en,local content;domestic content;local manufacturing requirement;made in,,draft
+local-content,id,tingkat komponen dalam negeri;TKDN;penggunaan produk dalam negeri;P3DN,,draft: needs review by a native speaker
+local-content,vi,tỷ lệ nội địa hóa;nội địa hóa;hàng sản xuất trong nước,,draft: needs review by a native speaker
+local-content,th,สัดส่วนการใช้ชิ้นส่วนในประเทศ;ผลิตในประเทศ;Made in Thailand,,draft: needs review by a native speaker
+local-content,ms,kandungan tempatan;keperluan kandungan tempatan;buatan Malaysia,,draft: needs review by a native speaker
+manufacturing-incentives,en,production linked incentive;manufacturing incentive;tax holiday;investment allowance;subsidy for manufacturing,,draft
+manufacturing-incentives,id,insentif fiskal;tax holiday;tax allowance;fasilitas kepabeanan;industri baterai,,draft: needs review by a native speaker
+manufacturing-incentives,vi,ưu đãi đầu tư;ưu đãi thuế;công nghiệp hỗ trợ;sản xuất pin,,draft: needs review by a native speaker
+manufacturing-incentives,th,ส่งเสริมการลงทุน;BOI;สิทธิประโยชน์ทางภาษี;การผลิตแบตเตอรี่,,draft: needs review by a native speaker
+manufacturing-incentives,ms,insentif cukai;elaun cukai pelaburan;taraf perintis;pembuatan,,draft: needs review by a native speaker
+investment-rules,en,foreign investment;foreign ownership;investment screening;negative list;positive investment list,,draft
+investment-rules,id,bidang usaha penanaman modal;daftar positif investasi;penanaman modal asing;PMA,,draft: needs review by a native speaker
+investment-rules,vi,đầu tư nước ngoài;ngành nghề kinh doanh có điều kiện;tiếp cận thị trường,,draft: needs review by a native speaker
+investment-rules,th,การประกอบธุรกิจของคนต่างด้าว;การลงทุนจากต่างประเทศ,,draft: needs review by a native speaker
+investment-rules,ms,pelaburan asing;pemilikan asing;pelaburan langsung asing,,draft: needs review by a native speaker
+import-tariffs,en,customs duty;import duty;tariff exemption;basic customs duty;tariff schedule,,draft
+import-tariffs,id,bea masuk;pembebasan bea masuk;tarif bea masuk;PMK,,draft: needs review by a native speaker
+import-tariffs,vi,"thuế nhập khẩu;biểu thuế xuất khẩu, nhập khẩu;miễn thuế nhập khẩu",,draft: needs review by a native speaker
+import-tariffs,th,อากรขาเข้า;ภาษีนำเข้า;ยกเว้นอากร,,draft: needs review by a native speaker
+import-tariffs,ms,duti import;duti kastam;pengecualian duti,,draft: needs review by a native speaker
+trade-remedies,en,anti-dumping duty;countervailing duty;safeguard duty;trade remedy;dumping,,draft
+trade-remedies,id,bea masuk antidumping;bea masuk tindakan pengamanan;BMTP;bea masuk imbalan,,draft: needs review by a native speaker
+trade-remedies,vi,thuế chống bán phá giá;phòng vệ thương mại;thuế tự vệ;chống trợ cấp,,draft: needs review by a native speaker
+trade-remedies,th,มาตรการตอบโต้การทุ่มตลาด;อากรตอบโต้การทุ่มตลาด;มาตรการปกป้อง,,draft: needs review by a native speaker
+trade-remedies,ms,duti antilambakan;duti imbalan;langkah perlindungan,,draft: needs review by a native speaker
+import-standards,en,approved list of models and manufacturers;mandatory certification;compulsory registration;import licence;technical regulation,,draft
+import-standards,id,SNI wajib;standar nasional Indonesia;persetujuan impor;pertimbangan teknis,,draft: needs review by a native speaker
+import-standards,vi,quy chuẩn kỹ thuật quốc gia;chứng nhận hợp quy;giấy phép nhập khẩu,,draft: needs review by a native speaker
+import-standards,th,มาตรฐานผลิตภัณฑ์อุตสาหกรรม;มอก.;ใบอนุญาตนำเข้า,,draft: needs review by a native speaker
+import-standards,ms,pensijilan mandatori;SIRIM;permit import;lesen import,,draft: needs review by a native speaker
+export-restrictions,en,export ban;export restriction;export quota;export licence;export duty,,draft
+export-restrictions,id,larangan ekspor;pembatasan ekspor;bea keluar;persetujuan ekspor,,draft: needs review by a native speaker
+export-restrictions,vi,cấm xuất khẩu;hạn chế xuất khẩu;thuế xuất khẩu;giấy phép xuất khẩu,,draft: needs review by a native speaker
+export-restrictions,th,ห้ามส่งออก;จำกัดการส่งออก;ใบอนุญาตส่งออก,,draft: needs review by a native speaker
+export-restrictions,ms,larangan eksport;sekatan eksport;duti eksport;permit eksport,,draft: needs review by a native speaker

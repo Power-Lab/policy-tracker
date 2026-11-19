@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block description %}Every rule in the tracker on one time axis, by country and topic.{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Timeline", None)]) }}
+  <h1>Timeline</h1>
+  <p class="lede">Every instrument plotted by date of signature, with one row per topic. All countries share the same time axis. Select a point to open the entry.</p>
+</section>
+<section class="container">
+  {% for c, svg in lanes %}
+  <div class="section-sm">
+    <div class="section-head"><h2>{{ c.name }}</h2><a href="{{ root }}countries/{{ c.code|lower }}/">Country page →</a></div>
+    <figure class="chart-frame scroll-x">{{ svg }}</figure>
+  </div>
+  {% endfor %}
+  {{ m.status_legend() }}
+</section>
+{% endblock %}

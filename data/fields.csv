@@ -1,0 +1,37 @@
+field,example,description
+id,ID-PERMEN-ESDM-2024-02,"Stable identifier: country, document type, year and number."
+country,ID,ISO country code.
+jurisdiction,MY-SBH,"Empty for national rules. A sub-national code (country code plus state) for state-level law, such as Sabah or Sarawak in Malaysia."
+doc_type,ministerial regulation,"Legal form of the document. Plans such as RUPTL and PDP8 are their own type; emergency regulation (Perppu), advisory, code, regulator determination and directive cover instruments that are not numbered regulations."
+number,2/2024,Number as printed on the document.
+short_name,Permen ESDM 2/2024,Short label used in lists and charts.
+issuing_body,Ministry of Energy and Mineral Resources (ESDM),Body that signed the document.
+origin_sector,energy,"Sector the issuer sits in, so cross-sector policies (mining, trade, fiscal) can be told apart."
+energy_channel,demand;prices,How the rule reaches the energy sector. One or more values.
+date_signed,2024-01-29,Date signed. YYYY or YYYY-MM is allowed until checked.
+date_in_force,2024-01-29,Date the rule takes effect; can differ from the signing date.
+title_original,Peraturan Menteri ESDM Nomor 2 Tahun 2024 tentang …,Title in the language of the binding text.
+title_english,MEMR Regulation 2/2024 on Grid-Connected Rooftop Solar,English title (our own translation).
+summary_english,Ends credit for exported rooftop power …,"Two or three sentences on what it does and what changed. Drafted, then checked by a reviewer."
+topics,rooftop-solar,"Topic ids from the fixed topic list. Each topic belongs to one category (electricity, energy and climate, supply chain and industrial policy, trade); a rule's categories follow from its topics."
+technologies,solar-pv;batteries,"Technologies the instrument specifically concerns: solar-pv, wind, batteries, electric-vehicles, grid-equipment or hydrogen. Empty when it is not technology-specific."
+amends,ID-PERMEN-ESDM-2018-49,Ids of earlier rules this one partly amends.
+revokes,ID-PERMEN-ESDM-2021-26,Ids of earlier rules this one fully revokes or replaces.
+amended_by,(derived),Later rules that amend this one. Worked out from the amends links; never typed.
+revoked_by,(derived),Later rules that revoke this one. Worked out from the revokes links; never typed.
+implements,VN-LAW-2024-61,"Ids of rules this one implements (a decree or circular that carries out a law, decision or resolution)."
+overrides,ID-PERMEN-ESDM-2017-50,"Ids of rules this one overrides in part without amending or revoking them, such as a higher-ranking rule that sets new prices."
+implemented_by,(derived),Later rules that implement this one. Worked out from the implements links; never typed.
+overridden_by,(derived),Later rules that override this one in part. Worked out from the overrides links; never typed.
+link_basis,express clause,"Basis for this rule's amends/revokes links: express clause (the text says so), implied by successor (e.g. a new plan replacing the old one) or expired."
+binding,no,"Empty means legally binding. 'no' for policy documents without legal force, such as party resolutions or roadmaps."
+grandfathered,Projects that met the deadline keep the tariff…,For rules that have ended but still apply to existing contracts or projects: a short note on who keeps the old terms.
+status,in force,"Current status: in force, amended (in force with changes), pending (adopted, not yet in force), draft (proposed, not adopted), replaced, revoked or expired."
+status_checked,2026-11-03,Date the status was last checked.
+source_url,https://peraturan.bpk.go.id/…,Link to the official source.
+source_type,document,document (the text itself) or portal-search (a placeholder until review).
+language,id,Language of the binding text.
+verification,unverified,"verified, partly verified or unverified."
+reviewed_by,,Who reviewed the row.
+reviewed_on,,When it was reviewed.
+notes,,Open questions and caveats for reviewers and readers.

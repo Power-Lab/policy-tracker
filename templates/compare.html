@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block description %}Topic by country: which rules apply today in each country tracked.{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Compare", None)]) }}
+  <h1>Compare countries</h1>
+  <p class="lede">The rules that still apply, by topic and country, plus drafts and adopted rules not yet in force. An empty cell indicates that no instrument has been recorded; it does not imply that none exists.</p>
+</section>
+<section class="container">
+  <div class="table-wrap">
+    <table class="matrix">
+      <thead>
+        <tr><th scope="col">Topic</th>{% for code, c in countries.items() %}<th scope="col"><a href="{{ root }}countries/{{ code|lower }}/">{{ c.name }}</a></th>{% endfor %}</tr>
+      </thead>
+      <tbody>
+        {% for row in matrix %}
+        {% if loop.first or row.t.category != loop.previtem.t.category %}
+        <tr class="group-row cat-{{ row.t.category }}"><th colspan="{{ countries|length + 1 }}" scope="colgroup"><span class="cat-mark" aria-hidden="true"></span>{{ categories[row.t.category].label }}</th></tr>
+        {% endif %}
+        <tr>
+          <th scope="row"><a href="{{ root }}topics/{{ row.t.id }}/">{{ row.t.label }}</a></th>
+          {% for cell in row.cells %}
+          <td>
+            {% for r, ams in cell.current %}
+            <div class="matrix-rule">
+              <span class="lg-dot s-{{ r.status|sslug }}" title="{{ r.status }}"></span>
+              <span>{{ m.rule_link(r) }}<span class="muted small"> · {{ r.date_signed[:4] }}</span>{{ m.amended_line(ams) }}</span>
+            </div>
+            {% else %}<span class="muted small">—</span>{% endfor %}
+            {% for r in cell.upcoming %}<div class="matrix-rule"><span class="lg-dot s-{{ r.status|sslug }}" title="{{ r.status }}"></span><span>{{ m.rule_link(r) }}<span class="muted small"> · {{ r.status }}</span></span></div>{% endfor %}
+            {% if cell.ended %}<a class="small muted" href="{{ root }}rules/?country={{ cell.code }}&amp;topic={{ row.t.id }}&amp;status=revoked&amp;status=replaced&amp;status=expired">+{{ cell.ended }} earlier</a>{% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {{ m.status_legend() }}
+</section>
+{% endblock %}

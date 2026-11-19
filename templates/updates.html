@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block description %}What changed in the tracker's data, newest first: new rules, status changes and reviews.{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Updates", None)]) }}
+  <h1>Updates</h1>
+  <p class="lede">All changes to the data, most recent first, including new entries, changes of status and completed reviews. The list is generated from the version history of the data file. <a href="feed.xml">Subscribe with the Atom feed</a>.</p>
+</section>
+<section class="container narrow-left">
+  {% for u in updates %}
+  <article class="update" id="{{ u.sha[:12] }}">
+    <div class="update-date"><time>{{ u.date|date }}</time></div>
+    <div class="update-body">
+      <h2>{{ u.subject }}</h2>
+      <p class="small muted">
+        {% if u.added %}{{ u.added|length }} rule{{ "" if u.added|length == 1 else "s" }} added{% endif %}{% if u.added and u.n_changed %} · {% endif %}{% if u.n_changed %}{{ u.n_changed }} rule{{ "" if u.n_changed == 1 else "s" }} updated{% endif %}
+        · <a class="muted" href="https://github.com/{{ repo }}/commit/{{ u.sha }}">view the change</a>
+      </p>
+      {% if u.notable %}
+      <ul class="update-list">
+        {% for n in u.notable %}
+        <li>{{ m.rule_link(n.r) }}: <code>{{ n.field }}</code>
+          {% if n.field == "status" %}{{ m.status(n.old) if n.old in statuses else n.old }} → {{ m.status(n.new) }}
+          {% elif n.field == "verification" %}{{ n.old }} → {{ m.verif(n.new) }}
+          {% else %}<span class="muted">{{ n.old or "—" }}</span> → {{ n.new or "—" }}{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if u.added_rules and u.added_rules|length <= 12 %}
+      <ul class="update-list">{% for r in u.added_rules %}<li>{{ m.rule_link(r) }} <span class="muted small">{{ r.title_english }}</span></li>{% endfor %}</ul>
+      {% elif u.added_rules %}
+      <p class="small">Including {% for r in u.added_rules[:8] %}{{ m.rule_link(r) }}{{ ", " if not loop.last }}{% endfor %} and {{ u.added_rules|length - 8 }} more.</p>
+      {% endif %}
+    </div>
+  </article>
+  {% else %}
+  <p class="muted">No history is available in this build.</p>
+  {% endfor %}
+</section>
+{% endblock %}

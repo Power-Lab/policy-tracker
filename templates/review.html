@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
+{% block body_class %}review{% endblock %}
+{% block content %}
+<section class="page-head container">
+  {{ m.crumbs([("Home", root), ("Reviewer view", None)]) }}
+  <h1>Reviewer view</h1>
+  <p class="lede">Check each entry against the official text, then submit your edits as a GitHub issue or a new <code>rules.csv</code>. Nothing changes on the site until a maintainer merges it.</p>
+  <div class="callout warn small">Drafts are saved in this browser only. Submit them before clearing your browser data.</div>
+</section>
+
+<div class="container review-layout">
+  <aside class="review-queue">
+    <div class="facet-search">
+      <label for="reviewer">Your name</label>
+      <input id="reviewer" placeholder="e.g. A. Reviewer (IESR)">
+    </div>
+    <div class="facet-search">
+      <label for="q">Find a rule</label>
+      <input id="q" type="search" placeholder="Id, number, title…">
+    </div>
+    <fieldset id="f-country" class="inline-checks"><legend class="visually-hidden">Country</legend></fieldset>
+    <label class="check"><input id="only-open" type="checkbox" checked> <span>Only entries not yet verified</span></label>
+    <p id="count" class="small muted"></p>
+    <ol id="queue" class="queue"></ol>
+    <div class="stack">
+      <button id="submit-all" type="button" class="btn" hidden>Submit drafts as one review</button>
+      <button id="dl" type="button" class="btn btn-ghost">Download rules.csv with my edits</button>
+      <button id="discard-all" type="button" class="btn btn-ghost">Discard all drafts</button>
+    </div>
+  </aside>
+  <section id="editor" class="card editor">
+    <p class="muted">Pick an entry from the queue. Entries with amendment links are listed first, because errors in those links affect the status of other entries.</p>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ root }}assets/js/review.js"></script>{% endblock %}

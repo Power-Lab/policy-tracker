@@ -1,0 +1,60 @@
+{% import "macros.html" as m with context %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add("js")</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ site_name }}</title>
+  <meta name="description" content="{% block description %}A dataset of energy, electricity, supply chain and trade policy instruments in Asia-Pacific, maintained by the Power Transformation Lab at UC San Diego: what each instrument does, what it amends or revokes, and whether it is in force.{% endblock %}">
+  {% block meta %}{% endblock %}
+  <link rel="alternate" type="application/atom+xml" title="Updates" href="{{ root }}updates/feed.xml">
+  <link rel="icon" href="{{ root }}assets/favicon-32x32.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ root }}assets/css/site.css">
+</head>
+<body data-root="{{ root }}" data-repo="{{ repo }}" class="{% block body_class %}{% endblock %}">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{{ root or './' }}">
+        <img class="brand-logo" src="{{ root }}assets/img/header-logo.png" alt="Power Transformation Lab" width="161" height="44">
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-text"><span class="brand-name">Policy Tracker</span><span class="brand-sub">Energy, electricity and supply chain policy</span></span>
+      </a>
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav" aria-label="Main">
+        {% for key, label, href in [("rules","Explore","rules/"),("countries","Countries","countries/"),("topics","Topics","topics/"),("compare","Compare","compare/"),("timeline","Timeline","timeline/"),("data","Data","data/"),("about","About","about/")] %}
+        <a href="{{ root }}{{ href }}"{% if nav == key %} aria-current="page"{% endif %}>{{ label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-title">{{ site_name }}</p>
+        <p class="small">Maintained by the <a href="https://pwrlab.org/">Power Transformation Lab</a>, University of California San Diego.</p>
+        <p class="muted">A research dataset under development. Entries marked <em>unverified</em> have not been checked against the official text. Not legal advice.</p>
+      </div>
+      <div class="footer-links">
+        <a href="{{ root }}about/">About and method</a>
+        <a href="{{ root }}data/">Download the data</a>
+        <span><a href="{{ root }}updates/">Updates</a> <a class="small" href="{{ root }}updates/feed.xml">(Atom feed)</a></span>
+        <a href="{{ root }}review/">Reviewer view</a>
+        <a href="https://github.com/{{ repo }}">Source on GitHub</a>
+      </div>
+      <p class="muted small">{{ n_rules }} rules · data last checked {{ generated|date }} · data and text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code <a href="https://github.com/{{ repo }}/blob/main/LICENSE">MIT</a></p>
+    </div>
+  </footer>
+  <script src="{{ root }}assets/js/site.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

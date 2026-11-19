@@ -1,0 +1,15 @@
+{
+  "_comment": "Per-source options for the weekly scan (scripts/scan_portals.py). Sources and their adapters are registered in sources.csv; keywords come from vocabulary.csv.",
+  "vn-chinhphu": {},
+  "id-esdm-jdih": {
+    "match_all": true,
+    "match_label": "energy ministry",
+    "require": "^(Peraturan|Keputusan|Instruksi|Surat Edaran|Undang|Pengumuman)",
+    "skip": [
+      "Harga (Mineral )?(Logam )?Acuan",
+      "Harga Batubara Acuan",
+      "Pelimpahan Kewenangan",
+      "Kepegawaian"
+    ]
+  }
+}
