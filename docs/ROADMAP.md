@@ -30,7 +30,7 @@ A public dataset, with a website, from which a user can determine which instrume
 ### Coverage
 - ✅ Electricity and selected cross-sector instruments: Indonesia, Viet Nam, Thailand, the Philippines, Malaysia (all unverified).
 - ✅ Supply chain, trade and EV adoption instruments for the same five economies (57, unverified).
-- ⏳ India, Australia, Pakistan and Bangladesh, completing the nine economies of the lab's 2026 Asia-Pacific green economic transition brief.
+- ✅ India (40 instruments, unverified). ⏳ Australia, Pakistan and Bangladesh, completing the nine economies of the lab's 2026 Asia-Pacific green economic transition brief.
 - 💭 Singapore, Cambodia, Lao PDR, Brunei, Timor-Leste and Myanmar ([scouting/rest-of-asean.md](scouting/rest-of-asean.md)); China as the main reference economy for supply chains.
 
 ### Next

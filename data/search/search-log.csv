@@ -7,3 +7,4 @@ run_id,date,module,country,source_id,strategy,language,query,results,new_candida
 2026-11-04-scan,2026-11-04,power-core,VN,vn-chinhphu,monitoring,vi,,50,0,portal-scan,"First automated scan; 50 documents recorded as the baseline."
 2026-11-04-scan,2026-11-04,power-core,ID,id-esdm-jdih,monitoring,id,,8,0,portal-scan,"First automated scan; 8 documents recorded as the baseline."
 2026-11-19-research-sc,2026-11-19,supply-chain,ID;VN;TH;PH;MY,,scouting,en;id;vi;th;ms,,57,57,agent,"Desk research on supply chain, trade and EV adoption instruments; sources in docs/scouting/supply-chain-sea.md; individual queries were not logged."
+2026-11-19-research-in,2026-11-19,supply-chain,IN,,scouting,en,,40,40,agent,"Desk research across all four categories; sources and access results in docs/scouting/in.md; individual queries were not logged."

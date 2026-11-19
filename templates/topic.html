@@ -10,7 +10,7 @@
 
 <section class="container">
   <div class="grid grid-2 topic-countries">
-    {% for pc in per_country %}
+    {% for pc in per_country if pc.rules %}
     <div class="card">
       <div class="section-head">
         <h2>{{ pc.c.name }}</h2>
@@ -36,6 +36,8 @@
     </div>
     {% endfor %}
   </div>
+  {% set empty = per_country|rejectattr("rules")|map(attribute="c")|map(attribute="name")|list %}
+  {% if empty %}<p class="muted small">No instruments recorded yet for this topic in: {{ empty|join(", ") }}. This may be a gap in the dataset rather than an absence of instruments.</p>{% endif %}
   {{ m.chain_legend() }}
 </section>
 {% endblock %}
