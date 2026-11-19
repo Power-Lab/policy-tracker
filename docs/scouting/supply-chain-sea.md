@@ -302,7 +302,7 @@ The fit is acceptable but loose. Cabinet resolutions and BOI announcements are `
 
 ### Legal hierarchy and document types
 
-As in `/home/user/sea-policy-tracker/docs/scouting/ph.md`:
+As in [ph.md](ph.md):
 
 | Rank | Type | Example | `doc_type` |
 | --- | --- | --- | --- |
