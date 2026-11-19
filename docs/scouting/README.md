@@ -1,5 +1,7 @@
 # Country scouting
 
+New reports follow the structure in [../ADDING-A-COUNTRY.md](../ADDING-A-COUNTRY.md) (step 1).
+
 Desk research on the countries after Indonesia and Vietnam, done in November 2026. Each report covers how the power sector is organised, the legal hierarchy, the official sources (and whether they can be scraped), the key rules since about 2017 by topic, how well they fit the schema, possible partner institutes, and risks.
 
 | Country | Report | Candidate rules | Recommendation |

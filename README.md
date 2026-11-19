@@ -100,6 +100,7 @@ python3 -m unittest discover -s tests
 
 - [docs/ROADMAP.md](docs/ROADMAP.md): objective, status and next steps
 - [docs/SEARCH-PROTOCOL.md](docs/SEARCH-PROTOCOL.md): search and inclusion protocol
+- [docs/ADDING-A-COUNTRY.md](docs/ADDING-A-COUNTRY.md): step-by-step guide to adding an economy, with a reusable [research brief](docs/templates/research-brief.md)
 - [docs/SCHEMA-NOTES.md](docs/SCHEMA-NOTES.md): schema decisions and open questions
 - [docs/REVIEWING.md](docs/REVIEWING.md): review workflow
 - [docs/scouting/](docs/scouting/): source and coverage reports by economy

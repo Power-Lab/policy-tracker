@@ -95,7 +95,7 @@ Entries created before this protocol was adopted (the Indonesia and Vietnam seed
 3. Add the topic to the relevant module in `data/search/modules.csv`.
 4. Run the search plan for the module (`python3 scripts/search_plan.py <module> --topic <topic>`) and carry out enumeration, keyword search and citation chasing for each country.
 
-**Adding a country**
+**Adding a country** (step-by-step guide with examples and a checklist: [ADDING-A-COUNTRY.md](ADDING-A-COUNTRY.md))
 
 1. Prepare a scouting report following the structure of the existing reports in [scouting/](scouting/): sector structure, legal hierarchy, official sources with observed access status, main instruments since the start date, fit with the schema, partner institutes, risks.
 2. Register the sources in `data/search/sources.csv`, with tiers and access status.
