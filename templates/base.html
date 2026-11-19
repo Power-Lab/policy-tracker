@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if title %}{{ title }} · {% endif %}{{ site_name }}</title>
   <meta name="description" content="{% block description %}A dataset of energy, electricity, supply chain and trade policy instruments in Asia-Pacific, maintained by the Power Transformation Lab at UC San Diego: what each instrument does, what it amends or revokes, and whether it is in force.{% endblock %}">
-  {% block meta %}{% endblock %}
+  {% if not listed %}<meta name="robots" content="noindex, nofollow, noarchive">
+  {% endif %}{% block meta %}{% endblock %}
   <link rel="alternate" type="application/atom+xml" title="Updates" href="{{ root }}updates/feed.xml">
   <link rel="icon" href="{{ root }}assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +46,7 @@
       </div>
       <div class="footer-links">
         <a href="{{ root }}about/">About and method</a>
-        <a href="{{ root }}data/">Download the data</a>
+        <a href="{{ root }}data/">{% if downloads %}Download the data{% else %}Data and fields{% endif %}</a>
         <span><a href="{{ root }}updates/">Updates</a> <a class="small" href="{{ root }}updates/feed.xml">(Atom feed)</a></span>
         <a href="{{ root }}review/">Reviewer view</a>
         <a href="https://github.com/{{ repo }}">Source on GitHub</a>

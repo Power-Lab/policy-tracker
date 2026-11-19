@@ -30,7 +30,7 @@ Technology-specific instruments are also tagged by technology (solar PV, wind, b
 | Topics | `/topics/` and `/topics/<id>/` | Topics by category; for each economy, the instruments in force and their history |
 | Compare | `/compare/` | Topic × economy table of instruments in force |
 | Timeline | `/timeline/` | All instruments by date of signature |
-| Data | `/data/` | CSV and JSON downloads, field definitions, source registry |
+| Data | `/data/` | Field definitions and allowed values; CSV and JSON downloads when enabled |
 | About | `/about/` | Scope, definitions, method, search protocol, limitations |
 | Updates | `/updates/` | Log of every change to the data, with an Atom feed |
 | Reviewer view | `/review/` | Queue and editor for reviewers |
@@ -95,6 +95,15 @@ python3 -m unittest discover -s tests
 - **Pages:** Settings → Pages → Source: GitHub Actions.
 - **Actions:** Settings → Actions → General → Workflow permissions: read and write, and allow GitHub Actions to create and approve pull requests (needed by the review and draft workflows).
 - **Optional secret:** `ANTHROPIC_API_KEY`, for model-drafted entries in the weekly scan.
+
+### Visibility and downloads
+
+`config.json` → `site` controls two settings:
+
+- `listed` (currently `false`): when `false`, every page carries a `noindex` robots tag and no sitemap is published, so search engines are asked not to list the site. The pages remain reachable by anyone with the address. This is not access control.
+- `downloads` (currently `false`): when `false`, the CSV files are not published and the Data page shows field definitions only. `data/rules.json` is still published because the reviewer view reads it.
+
+The repository itself is public, so `data/rules.csv` can be read on GitHub regardless of these settings.
 
 ## Documentation
 

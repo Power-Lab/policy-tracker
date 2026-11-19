@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% block description %}Download the tracker data as CSV or JSON, with field definitions and allowed values.{% endblock %}
+{% block description %}Field definitions and allowed values for the tracker data{% if downloads %}, with CSV and JSON downloads{% endif %}.{% endblock %}
 {% block content %}
 <section class="page-head container">
   {{ m.crumbs([("Home", root), ("Data", None)]) }}
   <h1>Data</h1>
-  <p class="lede">The dataset is available in CSV and JSON formats. Each row describes one instrument; links to other instruments refer to their ids, so amendment chains can be followed in either direction.</p>
+  <p class="lede">{% if downloads %}The dataset is available in CSV and JSON formats. {% endif %}Each row describes one instrument; links to other instruments refer to their ids, so amendment chains can be followed in either direction.</p>
 </section>
 
 <section class="container">
+  {% if downloads %}
   <div class="grid grid-2">
     <a class="card download" href="rules.csv" download>
       <span class="file-type">CSV</span>
@@ -22,8 +23,9 @@
       <div><h2>rules.json</h2><p class="muted small">The same rules with lists as arrays, plus topics, countries and allowed values.</p></div>
     </a>
   </div>
-  <div class="callout info section-sm">
-    <p><strong>Before you use it:</strong> check each row's <code>verification</code> and <code>status_checked</code> fields. Unverified rows were drafted from secondary sources and have not yet been checked against the official text. The data is updated by commits to <a href="https://github.com/{{ repo }}/blob/main/data/rules.csv">data/rules.csv</a>, so the commit history is the full change log.</p>
+  {% endif %}
+  <div class="callout info{% if downloads %} section-sm{% endif %}">
+    <p>{% if not downloads %}The data files are not offered for download while the dataset is under review. {% endif %}<strong>Before you use it:</strong> check each row's <code>verification</code> and <code>status_checked</code> fields. Unverified rows were drafted from secondary sources and have not yet been checked against the official text. The data is updated by commits to <a href="https://github.com/{{ repo }}/blob/main/data/rules.csv">data/rules.csv</a>, so the commit history is the full change log.</p>
   </div>
 </section>
 

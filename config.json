@@ -1,4 +1,8 @@
 {
+  "site": {
+    "listed": false,
+    "downloads": false
+  },
   "reviews": {
     "multi_rule": true,
     "max_rules_per_review": 10,

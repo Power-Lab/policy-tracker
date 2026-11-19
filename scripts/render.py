@@ -38,6 +38,8 @@ _owner, _name = REPO.split("/", 1)
 SITE_URL = os.environ.get("SITE_URL") or f"https://{_owner.lower()}.github.io/{_name}/"
 SITE_NAME = "Power Transformation Lab Policy Tracker"
 CONFIG = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
+# listed: allow search engines to index the site; downloads: publish the CSV files and link them.
+SITE_OPTS = {"listed": True, "downloads": True, **CONFIG.get("site", {})}
 
 
 # ---------------------------------------------------------------- helpers
@@ -236,7 +238,8 @@ def main():
     env.globals.update(categories=data.categories, technologies=build.TECHNOLOGIES, tech_labels=tech_labels,
                        country_names=country_names, site_name=SITE_NAME, site_url=SITE_URL, repo=REPO, topics=data.topics,
                        countries=data.countries, statuses=build.STATUSES, verification=build.VERIFICATION,
-                       generated=data.generated, n_rules=len(rules), rules_by_id=data.rules)
+                       generated=data.generated, n_rules=len(rules), rules_by_id=data.rules,
+                       listed=SITE_OPTS["listed"], downloads=SITE_OPTS["downloads"])
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -395,15 +398,21 @@ def main():
     w.writerow(cols)
     for r in rules:
         w.writerow([";".join(r[c]) if isinstance(r.get(c), list) else r.get(c, "") for c in cols])
-    (OUT / "data" / "rules.csv").write_text(buf.getvalue(), encoding="utf-8")
-    shutil.copy(search.SEARCH / "sources.csv", OUT / "data" / "sources.csv")
+    if SITE_OPTS["downloads"]:
+        (OUT / "data" / "rules.csv").write_text(buf.getvalue(), encoding="utf-8")
+        shutil.copy(search.SEARCH / "sources.csv", OUT / "data" / "sources.csv")
     (OUT / ".nojekyll").write_text("")
 
-    # Sitemap
-    urls = "".join(f"<url><loc>{SITE_URL}{p + '/' if p and not p.endswith('.html') else p}</loc></url>"
-                   for p in pages if p not in ("404.html", "review.html", "review"))
-    (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>'
-                                     f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
+    # Sitemap and robots.txt. An unlisted site asks crawlers not to index it (robots meta tag on every
+    # page, robots.txt) and publishes no sitemap. This is a request to crawlers, not access control.
+    if SITE_OPTS["listed"]:
+        urls = "".join(f"<url><loc>{SITE_URL}{p + '/' if p and not p.endswith('.html') else p}</loc></url>"
+                       for p in pages if p not in ("404.html", "review.html", "review"))
+        (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>'
+                                         f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
+        (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.xml\n")
+    else:
+        (OUT / "robots.txt").write_text("User-agent: *\nDisallow: /\n")
     print(f"built {len(pages)} pages into {OUT.relative_to(ROOT)}/")
 
 
