@@ -161,7 +161,7 @@ The first scan after a source is added records a baseline and reports nothing; l
 
 ## Using an AI assistant for steps 1–3 and 7
 
-The scouting reports and first entries for India, Australia, Pakistan and Bangladesh were compiled with an AI research assistant working to the specification in [templates/research-brief.md](templates/research-brief.md). The specification can be reused for a new economy: it defines the output files, the 32-column row format, the allowed values and a validation command. Output prepared this way is always `unverified`, must be checked with step 8, and should be read before it is merged; the assistant's notes on access failures and missing numbers belong in the scouting report.
+The scouting reports and first entries for India, Australia, Pakistan, Bangladesh, China and the United States were compiled with an AI research assistant working to the specification in [templates/research-brief.md](templates/research-brief.md). The specification can be reused for a new economy: it defines the output files, the 32-column row format, the allowed values and a validation command. Output prepared this way is always `unverified`, must be checked with step 8, and should be read before it is merged; the assistant's notes on access failures and missing numbers belong in the scouting report.
 
 ## Checklist
 

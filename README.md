@@ -1,6 +1,6 @@
 # Power Transformation Lab Policy Tracker
 
-A public, English-language dataset of laws, regulations, decrees and plans on **electricity, energy, clean technology supply chains and trade** in Asia-Pacific, maintained by the [Power Transformation Lab](https://pwrlab.org/) at the University of California San Diego. For each instrument it records what it does, which earlier instruments it amends, revokes or implements, and whether it is in force, with a link to the official source.
+A public, English-language dataset of laws, regulations, decrees and plans on **electricity, energy, clean technology supply chains and trade** in Asia-Pacific, with China and the United States as reference economies, maintained by the [Power Transformation Lab](https://pwrlab.org/) at the University of California San Diego. For each instrument it records what it does, which earlier instruments it amends, revokes or implements, and whether it is in force, with a link to the official source.
 
 **Site:** https://power-lab.github.io/policy-tracker/
 

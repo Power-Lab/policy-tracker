@@ -230,7 +230,7 @@ def main():
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
     env.filters["date"] = fmt_date
     env.filters["sslug"] = status_slug
-    in_prose = {"Philippines": "the Philippines"}  # names that take an article in running text
+    in_prose = {"Philippines": "the Philippines", "United States": "the United States"}  # names that take an article in running text
     names = [in_prose.get(c["name"], c["name"]) for c in data.countries.values()]
     country_names = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
     tech_labels = {"solar-pv": "Solar PV", "wind": "Wind", "batteries": "Batteries", "electric-vehicles": "Electric vehicles",

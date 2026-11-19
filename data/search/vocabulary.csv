@@ -124,3 +124,27 @@ export-restrictions,id,larangan ekspor;pembatasan ekspor;bea keluar;persetujuan 
 export-restrictions,vi,cấm xuất khẩu;hạn chế xuất khẩu;thuế xuất khẩu;giấy phép xuất khẩu,,draft: needs review by a native speaker
 export-restrictions,th,ห้ามส่งออก;จำกัดการส่งออก;ใบอนุญาตส่งออก,,draft: needs review by a native speaker
 export-restrictions,ms,larangan eksport;sekatan eksport;duti eksport;permit eksport,,draft: needs review by a native speaker
+framework-law,zh,电力法;可再生能源法;能源法;修改决定;修订草案,,draft: needs review by a native speaker
+power-plans,zh,电力发展规划;十四五电力规划;能源规划;可再生能源发展规划;新型电力系统,,draft: needs review by a native speaker
+grid-market-rules,zh,电力市场;电力现货市场基本规则;中长期交易;并网;输配电价;电网公平开放,,draft: needs review by a native speaker
+tariffs-ppa,zh,销售电价;上网电价;煤电容量电价;分时电价;电价政策,,draft: needs review by a native speaker
+re-pricing,zh,新能源上网电价;机制电价;平价上网;竞争性配置;可再生能源电力消纳责任权重;补贴,,draft: needs review by a native speaker
+rooftop-solar,zh,分布式光伏;户用光伏;工商业分布式光伏;整县推进;自发自用,光伏电站,draft: needs review by a native speaker
+wheeling-dppa,zh,绿色电力证书;绿证;绿电交易;直接交易;隔墙售电;绿电直连,,draft: needs review by a native speaker
+captive-power,zh,自备电厂;燃煤自备电厂;自发自用;自备电源,,draft: needs review by a native speaker
+coal-phase-out,zh,煤电;淘汰落后产能;煤电机组;关停;控制煤炭消费,,draft: needs review by a native speaker
+energy-storage,zh,新型储能;储能;独立储能;抽水蓄能;配储,,draft: needs review by a native speaker
+cross-border-trade,zh,跨境电力;电力进出口;跨国联网;电力互联互通,,draft: needs review by a native speaker
+energy-strategy,zh,能源发展规划;碳达峰;碳中和;现代能源体系;能源安全,,draft: needs review by a native speaker
+energy-efficiency,zh,节约能源法;能效;能耗双控;节能;能效标准,,draft: needs review by a native speaker
+carbon-pricing,zh,碳排放权交易;全国碳市场;配额;温室气体自愿减排;CCER,,draft: needs review by a native speaker
+coal-supply,zh,电煤;煤炭保供;长协;煤炭价格;中长期合同,,draft: needs review by a native speaker
+ev-adoption,zh,新能源汽车;车辆购置税;充电基础设施;充电桩;以旧换新,燃油车,draft: needs review by a native speaker
+mineral-downstreaming,zh,矿产资源法;战略性矿产;稀土;总量控制;冶炼分离;关键矿产,,draft: needs review by a native speaker
+local-content,zh,国产化;本地化率;国产设备;自主可控;首台套,,draft: needs review by a native speaker
+manufacturing-incentives,zh,行业规范条件;产业政策;税收优惠;出口退税;专项资金;鼓励类,,draft: needs review by a native speaker
+investment-rules,zh,外商投资法;负面清单;外商投资安全审查;鼓励外商投资产业目录;准入,,draft: needs review by a native speaker
+import-tariffs,zh,进口关税;关税税则;暂定税率;关税调整;税委会,出口,draft: needs review by a native speaker
+trade-remedies,zh,反倾销;反补贴;保障措施;期终复审;贸易救济,,draft: needs review by a native speaker
+import-standards,zh,强制性国家标准;3C认证;进口许可;检验检疫;准入目录,,draft: needs review by a native speaker
+export-restrictions,zh,出口管制;两用物项;出口许可证;禁止出口限制出口技术目录;出口配额,出口退税,draft: needs review by a native speaker

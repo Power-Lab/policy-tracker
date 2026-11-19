@@ -31,13 +31,19 @@ A public dataset, with a website, from which a user can determine which instrume
 - ✅ Electricity and selected cross-sector instruments: Indonesia, Viet Nam, Thailand, the Philippines, Malaysia (all unverified).
 - ✅ Supply chain, trade and EV adoption instruments for the same five economies (57, unverified).
 - ✅ India (40 instruments), Australia (20), Pakistan (15) and Bangladesh (20), all unverified, completing the nine economies of the lab's 2026 Asia-Pacific green economic transition brief.
-- 💭 Singapore, Cambodia, Lao PDR, Brunei, Timor-Leste and Myanmar ([scouting/rest-of-asean.md](scouting/rest-of-asean.md)); China as the main reference economy for supply chains.
+- ✅ Reference economies: China (35 instruments) and the United States (39; federal, with two California instruments), all unverified ([scouting/cn.md](scouting/cn.md), [scouting/us.md](scouting/us.md)).
+- 💭 Singapore, Cambodia, Lao PDR, Brunei, Timor-Leste and Myanmar ([scouting/rest-of-asean.md](scouting/rest-of-asean.md)).
 
 ### Next
 - ⏳ Country reviewers, beginning with verification of existing entries.
 - ⏳ Native-speaker review of the search vocabulary; vocabulary for Hindi, Bengali, Urdu and other languages as needed.
 - ⏳ Portal adapters for open tier 1–2 sources (EPPO resolutions, DOE Philippines, Energy Commission Malaysia, and sources for the new economies).
-- 💭 Archived copies of source documents; a quarterly written summary of changes.
+- ✅ Site unlisted (no indexing by search engines) and CSV downloads withdrawn while entries are unverified (`config.json` → `site`).
+- ⏳ Archived copies of source documents (PDF and HTML), with a manifest recording the address, fetch date and checksum; storage location to be decided (Google Drive or a GitHub release).
+- ⏳ Longer machine-generated summaries for each instrument, drafted from the archived text and marked as unverified.
+- ⏳ Candidate instruments from existing policy databases (metadata only, subject to each database's licence), each searched for in official sources; those not found are queued separately.
+- 💭 Access control, if an unlisted site is not sufficient (for example, Cloudflare Access).
+- 💭 A quarterly written summary of changes.
 
 ## Open questions
 - Whether to include utility-issued rules and sub-national rules beyond the cases already covered.
