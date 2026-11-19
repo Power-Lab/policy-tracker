@@ -12,7 +12,7 @@ A public dataset, with a website, from which a user can determine which instrume
 2. **The CSV files in `data/` are the single source of truth.** Pages, downloads and charts are generated from them.
 3. **Verification is reported explicitly.** Every entry shows its status and verification level.
 4. **No server.** Python and Jinja2 generate static files hosted on GitHub Pages, which keeps maintenance and transfer simple.
-5. **Lab presentation.** The site follows the Power Transformation Lab's visual identity (pwrlab.org).
+5. **Restrained presentation.** One accent colour, legible type, muted status and category colours, and charts limited to the information they encode; credited to the Power Transformation Lab.
 
 ## Status
 
